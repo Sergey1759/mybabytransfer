@@ -1,0 +1,236 @@
+@font-face {
+    font-family: 'Segoe UI';
+    src: url('../font/SEGOEUI.TTF');
+}
+
+.wrapper_login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.wrapper_login>img {
+    margin-bottom: 40px;
+}
+
+.login_all {
+    background-color: #282640;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI';
+    position: relative;
+}
+
+.login_signup {
+    width: 320px;
+    height: 330px;
+    background-color: #2F2C4C;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 21px 3px rgba(0, 0, 0, 0.54);
+    -moz-box-shadow: 0px 0px 21px 3px rgba(0, 0, 0, 0.54);
+    box-shadow: 0px 0px 21px 3px rgba(0, 0, 0, 0.54);
+    transition: height 0.3s ease-out;
+    position: relative;
+}
+
+.head {
+    border-radius: 10px 10px 0 0;
+    background-color: white;
+    color: #282640;
+    display: flex;
+    height: 65px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 20px;
+    width: 100%;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 270px;
+    height: 45px;
+    background-color: #363455;
+    border-radius: 5px;
+    margin-top: 25px;
+    -webkit-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.54);
+    -moz-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.54);
+    box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.54);
+    position: absolute;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+}
+
+.buttons div {
+    width: 50%;
+    box-sizing: border-box;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.active_btn {
+    background-color: #E37429;
+}
+
+.input_rows {
+    width: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.input_rows input {
+    width: 90%;
+    background-color: #2F2C4C;
+    border: 0;
+    border-bottom: 1px solid white;
+    margin: 20px 0;
+    color: white;
+    box-sizing: border-box;
+    margin-left: 5px;
+}
+
+.input_rows input:focus {
+    outline: none;
+    border: 0;
+    border-bottom: 1px solid white;
+
+}
+
+.input_rows input::placeholder {
+    color: white;
+}
+
+.img_for_input {
+    width: 10%;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.img_for_input img {
+    width: 20px;
+    height: 20px;
+}
+
+
+#for_css {
+    position: relative;
+    justify-content: start;
+    margin: 10px 0 20px 0;
+}
+
+.reset_text {
+    font-size: 13px;
+    width: 90%;
+    color: white;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.form_signup {
+    display: none;
+}
+
+.input_rows select {
+    color: white;
+    background-color: #2F2C4C;
+    border: 0;
+    border-bottom: 1px solid white;
+    text-align: center;
+    width: 90%;
+    box-sizing: border-box;
+    margin: 20px 0;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.input_rows select option {
+    padding: 5px 0;
+}
+
+.input_rows select:focus {
+    outline: none;
+}
+
+.active_sign {
+    height: 400px;
+}
+
+.fadein {
+    animation-name: opacity_log;
+    animation-timing-function: cubic-bezier(0, 1.2, 1, .28);
+    animation-duration: 0.3s;
+    animation-direction: normal;
+}
+
+.error_placeholder::placeholder {
+    color: #E37429 !important;
+}
+
+.footer {
+    background-color: #0E0D1C;
+    color: white;
+    height: 60px;
+    padding: 0 60px;
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Segoe UI';
+    font-size: 14px;
+}
+
+.footer_right {
+    display: flex;
+}
+
+.footer_right div {
+    padding: 0 10px;
+}
+
+#footer_schema {
+    color: #F6A72E;
+}
+
+#for_css a {
+    display: flex;
+    font-family: 'Segoe UI';
+    text-decoration: none;
+    font-size: 13px;
+}
+
+@keyframes opacity_log {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
