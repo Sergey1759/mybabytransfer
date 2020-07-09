@@ -198,14 +198,16 @@ async function postData(url = '', data = {}) {
 
 
 function login(data) {
-    postData('/login', data)
+    postData('/users/login', data)
         .then((res) => {
-            console.log(res);
+            // localStorage.setItem('token', res);
+            document.cookie = `token=${res}`;
+            window.location.href = "/orders"
         });
 }
 
 function sign(data) {
-    postData('/sign', data)
+    postData('/users/sign', data)
         .then((res) => {
             console.log(res);
         });
