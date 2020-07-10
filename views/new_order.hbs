@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="../stylesheets/new_order.css">
+<link rel="stylesheet" href="../stylesheets/header.css">
+<div class="header">
+    <div class="logo">
+        <img src=" ../images/logo.svg" alt="">
+    </div>
+    <div class="menu">
+        <a href="/orders">
+            <div class="menu_item"> <img src=" ../images/burger.svg" alt=""> Мои заказы </div>
+        </a>
+        <div class="menu_item"> <img src=" ../images/requisites.svg" alt=""> Мои реквизиты </div>
+        <div class="menu_item"> <img src=" ../images/reports.svg" alt=""> Отчеты</div>
+        <a href="/orders/new_order">
+            <div class="new_order"> <img src=" ../images/add_order.svg" alt=""> Новый заказ</div>
+        </a>
+    </div>
+    <div class="profile">
+        <img src=" ../images/notification.svg" alt="">
+        <div class="profile_name">
+            Екатерина
+        </div>
+        <div class="profile_lastname">
+            Марченко
+        </div>
+        <div class="profile_photo"
+            style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/94/Rubens-Lady.of.the.Chamber.to.Infanta.Isabella.jpg');">
+        </div>
+        <img src=" ../images/door.svg" alt="exit" id="exit">
+    </div>
+</div>
+
+<div class="container_new_order">
+    <div class="container_new_order_header">Новый заказ</div>
+    <div class="container_rows">
+        <div class="icons">
+            <img src="../images/clock.svg" alt="">
+        </div>
+        <div class="container_rows_right">
+            <div class="container_rows_header line_height_17">Время и дата подачи машины</div>
+            <div class="container_rows_input"><input type="datetime-local" name="" id=""></div>
+        </div>
+    </div>
+    <div class="container_rows">
+        <div class="icons">
+            <img src="../images/gps_marker.svg" alt="">
+        </div>
+        <div class="container_rows_right">
+            <div class="container_rows_header line_height_17">Город</div>
+            <div class="container_rows_input"><input type="text" name="" id="" placeholder="Выберите город"></div>
+        </div>
+    </div>
+    <div class="container_rows">
+        <div class="icons">
+            <img src="../images/gps_marker.svg" alt="">
+        </div>
+        <div class="container_rows_right">
+            <div class="container_rows_header line_height_17">Адрес подачи</div>
+            <div class="container_rows_input">
+                <input type="text" name="" id="" placeholder="Выберите адрес">
+                <div class="select_in">
+                    Выбрать на карте
+                </div>
+                <div class="select_in">
+                    <img src="../images/home.svg" alt=""> Домашний адрес
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container_rows">
+        <div class="icons">
+            <img src="../images/gps_marker.svg" alt="">
+        </div>
+        <div class="container_rows_right">
+            <div class="container_rows_header line_height_17">Адрес перевозки</div>
+            <div class="container_rows_input">
+                <input type="text" name="" id="" placeholder="Выберите адрес">
+                <div class="select_in">
+                    Выбрать на карте
+                </div>
+                <div class="select_in">
+                    <img src="../images/home.svg" alt=""> Домашний адрес
+                </div>
+                <div class="select_in">
+                    <img src="../images/add_order.svg" alt="">Добавить адрес
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

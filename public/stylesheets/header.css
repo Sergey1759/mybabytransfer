@@ -1,0 +1,86 @@
+/* header */
+.header {
+    background-color: #0E0D1C;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    padding: 0 100px;
+    position: relative;
+    align-items: center;
+    box-sizing: border-box;
+    font-family: 'Segoe UI';
+    justify-content: space-around;
+}
+
+.logo img {
+    position: inherit;
+    height: 50px;
+    margin-right: 35px;
+}
+
+.menu {
+    border-left: 1px solid #465454;
+    border-right: 1px solid #465454;
+    display: flex;
+    color: white;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.menu_item {
+    margin: 0 35px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.menu_item img {
+    margin-right: 10px;
+}
+
+.new_order {
+    display: flex;
+    align-items: center;
+    margin: 0 35px;
+    padding: 7px 15px;
+    background-color: #E37429;
+    border-radius: 3px;
+}
+
+.new_order img {
+    margin-right: 10px;
+}
+
+.profile {
+    margin-left: 20px;
+    display: flex;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.profile_photo {
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-color: white;
+    border: 3px solid #465454;
+    box-sizing: border-box;
+}
+
+.profile>img {
+    margin-right: 5px;
+}
+
+.profile div {
+    margin: 0 3px;
+}
+
+#exit {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+}

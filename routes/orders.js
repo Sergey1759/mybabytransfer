@@ -8,6 +8,11 @@ router.get("/", middleware, async function (req, res, next) {
         title: "MyBabytransfer",
     });
 });
+router.get("/new_order", middleware, async function (req, res, next) {
+    res.render("new_order", {
+        title: "MyBabytransfer",
+    });
+});
 
 
 

@@ -1,5 +1,12 @@
 body {
+  background-color: #282640;
+  font-family: 'Segoe UI';
   margin: 0;
   padding: 0;
-  /* background-color: blue; */
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  font-family: 'Segoe UI' !important;
 }
