@@ -9,10 +9,12 @@ var usersRouter = require("./routes/user");
 var ordersRouter = require("./routes/orders");
 
 var app = express();
-
+const hbs = require('hbs')
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
+hbs.registerPartials('./views/partials')
+
 
 app.use(logger("dev"));
 app.use(express.json());

@@ -1,0 +1,165 @@
+<link rel="stylesheet" href="../stylesheets/confirm_order.css">
+{{> header}}
+
+<div class="container">
+    <div class="container_header">
+        Новый заказ
+    </div>
+    <div class="container_body">
+        <div class="container_body_left">
+            <div class="container_row">
+                <div class="container_row_icon">
+                    <img src="../images/clock.svg" alt="">
+                </div>
+                <div class="container_row_right">
+                    <div class="container_row_text">
+                        Время и дата подачи машины
+                    </div>
+                    <div class="container_row_value ">
+                        16:10 12/10/19
+                    </div>
+                </div>
+            </div>
+
+            <div class="container_row">
+                <div class="container_row_icon">
+                    <img src="../images/gps_marker.svg" alt="">
+                </div>
+                <div class="container_row_right">
+                    <div class="container_row_text">
+                        Адрес подачи машины
+                    </div>
+                    <div class="container_row_value ">
+                        ул. Шевченко 12
+                    </div>
+                </div>
+            </div>
+
+            <div class="container_row">
+                <div class="container_row_icon">
+                    <img src="../images/gps_marker.svg" alt="">
+                </div>
+                <div class="container_row_right">
+                    <div class="container_row_text">
+                        Адрес перевозки
+                    </div>
+                    <div class="container_row_value ">
+                        пр. Голосеевский 28/4
+                    </div>
+                </div>
+            </div>
+
+            <div class="container_row">
+                <div class="container_row_icon">
+                    <img src="../images/type_car.svg" alt="">
+                </div>
+                <div class="container_row_right">
+                    <div class="container_row_text">
+                        Тип автомобиля
+                    </div>
+                    <div class="container_row_value ">
+                        Седан
+                    </div>
+                </div>
+            </div>
+
+            <div class="container_row">
+                <div class="container_row_icon">
+                    <img src="../images/baby.svg" alt="">
+                </div>
+                <div class="container_row_right">
+                    <div class="container_row_text">
+                        Возраст ребенка
+                    </div>
+                    <div class="container_row_value ">
+                        04 лет 05 мес
+                    </div>
+                </div>
+            </div>
+            <div class="container_row">
+                <div class="container_row_icon">
+                    <img src="../images/baby.svg" alt="">
+                </div>
+                <div class="container_row_right">
+                    <div class="container_row_text">
+                        Возраст ребенка 2
+                    </div>
+                    <div class="container_row_value ">
+                        11 мес
+                    </div>
+                </div>
+            </div>
+            <div class="container_row">
+                <div class="container_row_icon">
+                    <img src="../images/chat.svg" alt="">
+                </div>
+                <div class="container_row_right">
+                    <div class="container_row_text">
+                        Комментарий
+                    </div>
+                    <div class="container_row_value ">
+                        Пустой багажник
+                    </div>
+                </div>
+            </div>
+            <div class="container_row">
+                <div class="container_row_icon">
+                    <img src="../images/location.svg" alt="">
+                </div>
+                <div class="container_row_right">
+                    <div class="container_row_text ">
+                        Расчетное ресстояние
+                    </div>
+                    <div class="container_row_value color_yellow">
+                        28 км
+                    </div>
+                </div>
+            </div>
+            <div class="container_row">
+                <div class="container_row_icon">
+                    <img src="../images/goal.svg" alt="">
+                </div>
+                <div class="container_row_right">
+                    <div class="container_row_text ">
+                        Расчетное время прибытия
+                    </div>
+                    <div class="container_row_value color_yellow">
+                        18:20 12/10/19
+                    </div>
+                </div>
+            </div>
+
+            <div class="container_row">
+                <div class="container_row_icon">
+                    <img src="../images/budget.svg" alt="">
+                </div>
+                <div class="container_row_right">
+                    <div class="container_row_text">
+                        Расчетная стоимость <br>
+                        <div class="font_12">(с учетом простоя до 60 мин)</div>
+                    </div>
+                    <div class="container_row_value color_yellow">
+                        280 грн
+                    </div>
+                </div>
+            </div>
+            <div class="container_row buttons_order">
+                <div class="cancel">Отменить <br> заказ</div>
+                <div class="edit">Изменить <br> заказ</div>
+                <div class="confirm">Подтвердить <br> заказ</div>
+            </div>
+
+        </div>
+        <div class="container_body_right">
+            <div class="container_body_right_header">Карта вашего маршрута</div>
+            <div class="container_body_right_map" id="map"></div>
+        </div>
+    </div>
+</div>
+{{> footer}}
+<script src="../javascripts/map.js"></script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBf2vtMPr5P0Z3JrYOdvz1vugg4fN1-e8&libraries=places&callback=initMap"
+    async defer></script>

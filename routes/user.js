@@ -2,6 +2,7 @@ let express = require("express");
 let router = express.Router();
 
 let api = require("../api/users");
+let customer = require("../api/customer");
 let mailer = require("../service/mailer");
 let randomstring = require("randomstring");
 let crypto = require("crypto-js");
@@ -28,7 +29,8 @@ router.post("/sign", async function (req, res, next) {
     console.log(req.body.user_password);
     try {
         // prettier-ignore
-        await api.query.insert(hash_pass, req.body.user_email, req.body.user_phone, 2);
+        let res_data = await api.query.insert(hash_pass, req.body.user_email, req.body.user_phone, 2);
+        await customer.query.insertId(res_data.insertId);
         mailer(req.body.user_email, "sadasdasd", "ashgdhasdg", html);
     } catch (e) {
         console.log(e);
