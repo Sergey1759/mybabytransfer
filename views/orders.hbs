@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="./stylesheets/orders.css">
+<link rel="stylesheet" href="../.././stylesheets/orders.css">
+<link rel="stylesheet" href="../.././stylesheets/header.css">
 {{> header}}
 
 <div class="type_orders_container">
@@ -52,15 +53,42 @@
         </div>
         <div class="info_row_right maps" id="map{{this.id}}" data-start="{{this.address_start}}"
             data-end="{{this.address_end}}">
-
         </div>
     </div>
     {{/each}}
 </div>
 
+<div class="pagination">
+    <a href="/orders/page/1">
+        <div class="start_pages">&lt;</div>
+    </a>
+    {{#if pages.prev_prev}}
+    <a href="/orders/page/{{pages.prev_prev}}">
+        <div class="prev_prev">{{pages.prev_prev}}</div>
+    </a>
+    {{/if}}
+    {{#if pages.prev}}
+    <a href="/orders/page/{{pages.prev}}">
+        <div class="prev">{{pages.prev}}</div>
+    </a>
+    {{/if}}
 
-<script src="./javascripts/orders.js"></script>
-<script src="../javascripts/maps.js"></script>
+    <a href="/orders/page/{{pages.now}}">
+        <div class="now active_pagination">{{pages.now}}</div>
+    </a>
+    <a href="/orders/page/{{pages.next}}">
+        <div class="next">{{pages.next}}</div>
+    </a>
+    <a href="/orders/page/{{pages.next_next}}">
+        <div class="next_next">{{pages.next_next}}</div>
+    </a>
+    <a href="/orders/page/1">
+        <div class="end_pages">&gt;</div>
+    </a>
+</div>
+{{>footer}}
+<script src="../.././javascripts/orders.js"></script>
+<script src="../../javascripts/maps.js"></script>
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script

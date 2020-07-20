@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="../stylesheets/confirm_order.css">
+<link rel="stylesheet" href="../../stylesheets/confirm_order.css">
+<link rel="stylesheet" href="../../stylesheets/header.css">
 {{> header}}
 
 <div class="container">
@@ -9,49 +10,49 @@
         <div class="container_body_left">
             <div class="container_row">
                 <div class="container_row_icon">
-                    <img src="../images/clock.svg" alt="">
+                    <img src="../../images/clock.svg" alt="">
                 </div>
                 <div class="container_row_right">
                     <div class="container_row_text">
                         Время и дата подачи машины
                     </div>
                     <div class="container_row_value ">
-                        16:10 12/10/19
+                        {{order_l.calling_time}}
                     </div>
                 </div>
             </div>
 
             <div class="container_row">
                 <div class="container_row_icon">
-                    <img src="../images/gps_marker.svg" alt="">
+                    <img src="../../images/gps_marker.svg" alt="">
                 </div>
                 <div class="container_row_right">
                     <div class="container_row_text">
                         Адрес подачи машины
                     </div>
                     <div class="container_row_value ">
-                        ул. Шевченко 12
+                        {{order_l.start_address}}
                     </div>
                 </div>
             </div>
 
             <div class="container_row">
                 <div class="container_row_icon">
-                    <img src="../images/gps_marker.svg" alt="">
+                    <img src="../../images/gps_marker.svg" alt="">
                 </div>
                 <div class="container_row_right">
                     <div class="container_row_text">
                         Адрес перевозки
                     </div>
                     <div class="container_row_value ">
-                        пр. Голосеевский 28/4
+                        {{order_l.end_address}}
                     </div>
                 </div>
             </div>
 
             <div class="container_row">
                 <div class="container_row_icon">
-                    <img src="../images/type_car.svg" alt="">
+                    <img src="../../images/type_car.svg" alt="">
                 </div>
                 <div class="container_row_right">
                     <div class="container_row_text">
@@ -65,7 +66,7 @@
 
             <div class="container_row">
                 <div class="container_row_icon">
-                    <img src="../images/baby.svg" alt="">
+                    <img src="../../images/baby.svg" alt="">
                 </div>
                 <div class="container_row_right">
                     <div class="container_row_text">
@@ -78,7 +79,7 @@
             </div>
             <div class="container_row">
                 <div class="container_row_icon">
-                    <img src="../images/baby.svg" alt="">
+                    <img src="../../images/baby.svg" alt="">
                 </div>
                 <div class="container_row_right">
                     <div class="container_row_text">
@@ -91,7 +92,7 @@
             </div>
             <div class="container_row">
                 <div class="container_row_icon">
-                    <img src="../images/chat.svg" alt="">
+                    <img src="../../images/chat.svg" alt="">
                 </div>
                 <div class="container_row_right">
                     <div class="container_row_text">
@@ -104,7 +105,7 @@
             </div>
             <div class="container_row">
                 <div class="container_row_icon">
-                    <img src="../images/location.svg" alt="">
+                    <img src="../../images/location.svg" alt="">
                 </div>
                 <div class="container_row_right">
                     <div class="container_row_text ">
@@ -117,7 +118,7 @@
             </div>
             <div class="container_row">
                 <div class="container_row_icon">
-                    <img src="../images/goal.svg" alt="">
+                    <img src="../../images/goal.svg" alt="">
                 </div>
                 <div class="container_row_right">
                     <div class="container_row_text ">
@@ -131,7 +132,7 @@
 
             <div class="container_row">
                 <div class="container_row_icon">
-                    <img src="../images/budget.svg" alt="">
+                    <img src="../../images/budget.svg" alt="">
                 </div>
                 <div class="container_row_right">
                     <div class="container_row_text">
@@ -139,7 +140,7 @@
                         <div class="font_12">(с учетом простоя до 60 мин)</div>
                     </div>
                     <div class="container_row_value color_yellow">
-                        280 грн
+                        {{order_l.cost}} грн
                     </div>
                 </div>
             </div>
@@ -157,7 +158,7 @@
     </div>
 </div>
 {{> footer}}
-<script src="../javascripts/map.js"></script>
+<script src="../../javascripts/map.js"></script>
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script

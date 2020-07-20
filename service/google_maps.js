@@ -13,6 +13,7 @@ async function get(from, to) {
                 origin: from,
                 destination: to,
                 key: "AIzaSyBBf2vtMPr5P0Z3JrYOdvz1vugg4fN1-e8",
+                language: 'ru'
             }
         })
         .then((r) => {

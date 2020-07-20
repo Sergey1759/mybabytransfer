@@ -77,6 +77,7 @@ create_order.addEventListener('click', async () => {
     }
     await postData('/orders/create', data).then(res => {
         console.log(res);
+        location.replace(`/orders/confirm_order/${res.order}`)
     });
 });
 

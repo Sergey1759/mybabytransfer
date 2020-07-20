@@ -109,7 +109,7 @@ function clear_placeholder_sign() {
     sign_phone.value = '';
 }
 
-function check_sign() {
+async function check_sign() {
     let sign_email = document.getElementById('sign_email');
     let sign_password = document.getElementById('sign_password');
     let sign_phone = document.getElementById('sign_phone');
@@ -156,7 +156,18 @@ function check_sign() {
             user_phone: sign_phone.value,
             user_role: user_role
         }
-        sign(data);
+        let res = await sign(data);
+        if (res.error) {
+
+        }
+        if (res.error) {
+            sign_email.classList.add('error_placeholder');
+            sign_email.placeholder = res.error;
+            sign_email.value = '';
+        } else {
+            sign_email.classList.remove('error_placeholder');
+            sign_email.placeholder = "Введите e-mail";
+        }
     }
 }
 
@@ -206,9 +217,9 @@ function login(data) {
         });
 }
 
-function sign(data) {
-    postData('/users/sign', data)
+async function sign(data) {
+    return postData('/users/sign', data)
         .then((res) => {
-            console.log(res);
+            return res;
         });
 }
