@@ -196,6 +196,29 @@ body {
   /* animation-fill-mode: forwards; */
 }
 
+.pagination {
+  margin: 0 auto;
+  width: 18%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+
+.pagination div {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #363455;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.active_pagination {
+  background-color: #e37429 !important;
+}
+
 @keyframes animation_order {
   0% {
     height: 0;

@@ -3,6 +3,7 @@ let router = express.Router();
 
 let api = require("../api/users");
 let customer = require("../api/customer");
+let driver = require("../api/driver");
 let mailer = require("../service/mailer");
 let randomstring = require("randomstring");
 let crypto = require("crypto-js");
@@ -26,12 +27,28 @@ router.post("/sign", async function (req, res, next) {
     let html = `<a href=${link}>google</a>`;
     random[rand] = true;
     let hash_pass = hashed_password(req);
-    console.log(req.body.user_password);
+
     try {
-        // prettier-ignore
-        let res_data = await api.query.insert(hash_pass, req.body.user_email, req.body.user_phone, 2);
-        await customer.query.insertId(res_data.insertId);
-        mailer(req.body.user_email, "sadasdasd", "ashgdhasdg", html);
+        let roles = {
+            'driver': 3,
+            'customer': 2
+        }
+        let isUser = await api.query.getUserByEmail(req.body.user_email);
+        if (isUser.length > 0) {
+            res.send({
+                error: 'такой email уже существует'
+            })
+        } else {
+            // prettier-ignore
+            let res_data = await api.query.insert(hash_pass, req.body.user_email, req.body.user_phone, roles[req.body.user_role]);
+            if (req.body.user_role == 'driver') {
+                await driver.query.insertId(res_data.insertId);
+            } else if (req.body.user_role == 'customer') {
+                await customer.query.insertId(res_data.insertId);
+            }
+            mailer(req.body.user_email, "sadasdasd", "ashgdhasdg", html);
+        }
+
     } catch (e) {
         console.log(e);
     }
@@ -47,7 +64,6 @@ router.post("/login", async function (req, res, next) {
     } else {
         if (hash_pass == users[0].password) {
             let token = JWT.getToken(users[0].id);
-            console.log(token);
             res.json(token);
         }
     }

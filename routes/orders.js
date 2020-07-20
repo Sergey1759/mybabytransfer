@@ -9,11 +9,24 @@ let Api_customers = require("../api/customer");
 let Api_address = require("../api/address");
 let Api_addresses = require("../api/addresses");
 
-router.get("/", middleware, async function (req, res, next) {
+router.get("/page/:id", middleware, async function (req, res, next) {
     console.log("Cookies: ", req.cookies);
-    let orders = await Api_orders.query.get_all();
+    let orders = await Api_orders.query.get_ten(req.params.id);
 
+    let isStart = false;
+    let isEnd = false;
+    // if()
     console.log(orders);
+    let pages = {
+        start: 1,
+        prev_prev: (req.params.id - 2) <= 0 ? false : (req.params.id - 2),
+        prev: (req.params.id - 1) <= 0 ? false : (req.params.id - 1),
+        now: req.params.id,
+        next: +req.params.id + 1,
+        next_next: +req.params.id + 2,
+        end: 2,
+    };
+
 
     for (const order of orders) {
         order.calling_time = `${order.calling_time.getUTCDate()}/${order.calling_time.getUTCMonth()} ${order.calling_time.getHours()}:${order.calling_time.getMinutes()}`;
@@ -25,7 +38,8 @@ router.get("/", middleware, async function (req, res, next) {
     }
     res.render("orders", {
         title: "MyBabytransfer",
-        orders
+        orders,
+        pages
     });
 });
 router.get("/new_order", middleware, async function (req, res, next) {
@@ -34,9 +48,22 @@ router.get("/new_order", middleware, async function (req, res, next) {
     });
 });
 
-router.get("/confirm_order", middleware, async function (req, res, next) {
+router.get("/confirm_order/:id", middleware, async function (req, res, next) {
+    // console.log(req.params.id);
+    let order = await Api_orders.query.get_by_id(req.params.id);
+    let order_l = order[0];
+    let address = await Api_addresses.query.getById(order_l.id);
+    order_l.start_address = getStr(address[0].address);
+    order_l.end_address = getStr(address[1].address);
+
+    function getStr(str) {
+        let string = str.split(',');
+        string.splice(2, string.length);
+        return string.join(' , ');
+    }
     res.render("confirm_order", {
         title: "MyBabytransfer",
+        order_l
     });
 });
 
@@ -50,9 +77,9 @@ router.post("/create", middleware, async function (req, res, next) {
         m[0].distance.value,
         req.body.round_trip
     );
-    console.log(req.user.userId);
-    console.log(price);
-    // console.log(m[0]);
+    // console.log(req.user.userId);
+    // console.log(price);
+    console.log(m);
 
     let arrive_time = get_arrive_time(req.body.date, m[0].duration.value);
     let customer = await Api_customers.query.find_by_userId(req.user.userId);
@@ -79,6 +106,9 @@ router.post("/create", middleware, async function (req, res, next) {
 
     // let from = await Api_address.query.insert_address();
     // let from = console.log(order.insertId);
+    res.status(200).send({
+        order: order.insertId
+    })
 });
 
 module.exports = router;
