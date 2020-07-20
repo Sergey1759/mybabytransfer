@@ -1,33 +1,6 @@
 <link rel="stylesheet" href="./stylesheets/orders.css">
-<link rel="stylesheet" href="./stylesheets/header.css">
-<div class="header">
-    <div class="logo">
-        <img src="./images/logo.svg" alt="">
-    </div>
-    <div class="menu">
-        <a href="/orders">
-            <div class="menu_item"> <img src=" ../images/burger.svg" alt=""> Мои заказы </div>
-        </a>
-        <div class="menu_item"> <img src="./images/requisites.svg" alt=""> Мои реквизиты </div>
-        <div class="menu_item"> <img src="./images/reports.svg" alt=""> Отчеты</div>
-        <a href="/orders/new_order">
-            <div class="new_order"> <img src="./images/add_order.svg" alt=""> Новый заказ</div>
-        </a>
-    </div>
-    <div class="profile">
-        <img src="./images/notification.svg" alt="">
-        <div class="profile_name">
-            Екатерина
-        </div>
-        <div class="profile_lastname">
-            Марченко
-        </div>
-        <div class="profile_photo"
-            style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/94/Rubens-Lady.of.the.Chamber.to.Infanta.Isabella.jpg');">
-        </div>
-        <img src="./images/door.svg" alt="exit" id="exit">
-    </div>
-</div>
+{{> header}}
+
 <div class="type_orders_container">
     <div class="type_orders ">
         <div class="active_orders active_types">
@@ -50,21 +23,25 @@
         <div class="downtime">Время простоя</div>
         <div class="price">Цена</div>
     </div>
-    <div class="row" id="1024">
-        <div class="number">1024</div>
-        <div class="created">24/9</div>
+
+
+    {{#each orders}}
+    <div class="row" id={{this.id}}>
+        <div class="number">{{this.id}}</div>
+        <div class="created">{{this.time_created_order}}</div>
         <div class="status">В работе</div>
-        <div class="start"> 24/09 18:06</div>
-        <div class="end">24/09 19:08</div>
-        <div class="distance">16 км</div>
-        <div class="number_car"> КО 1204 СА</div>
-        <div class="downtime">10 мин</div>
-        <div class="price">320 грн</div>
+        <div class="start"> {{this.calling_time}}</div>
+        <div class="end">{{this.arrival_time}}</div>
+        <div class="distance">{{this.distance}} км</div>
+        <div class="number_car">еще не выбран</div>
+        <div class="downtime">0</div>
+        <div class="price">{{this.cost}} грн</div>
     </div>
-    <div class="info_row" id="991024">
+    <div class="info_row" id="99{{this.id}}">
         <div class="info_row_left">
             <div class="container_order_manage">
-                <div class="container_order_manage_header"><b id="manage_header_b">Заказ 1024</b> на сумму 250 грн</div>
+                <div class="container_order_manage_header"><b id="manage_header_b">Заказ {{this.id}}</b> на сумму
+                    {{this.cost}} грн</div>
                 <div class="container_order_manage_show"><img src="./images/eyes.svg" alt="">Посмотреть</div>
                 <div class="container_order_manage_edit"><img src="./images/edit.svg" alt="">Изменить</div>
                 <div class="container_order_manage_add_observer"><img src="./images/add_observer.svg" alt="">Добавить
@@ -73,63 +50,19 @@
                 <div class="container_order_manage_pay">Оплатить</div>
             </div>
         </div>
-        <div class="info_row_right">
-            <img src="./images/map.svg" alt="">
+        <div class="info_row_right maps" id="map{{this.id}}" data-start="{{this.address_start}}"
+            data-end="{{this.address_end}}">
+
         </div>
     </div>
-    <div class="row" id="1025">
-        <div class="number">1025</div>
-        <div class="created">24/9</div>
-        <div class="status">В работе</div>
-        <div class="start"> 24/09 18:06</div>
-        <div class="end">24/09 19:08</div>
-        <div class="distance">16 км</div>
-        <div class="number_car"> КО 1204 СА</div>
-        <div class="downtime">10 мин</div>
-        <div class="price">120 грн</div>
-    </div>
-    <div class="info_row" id="991025">
-        <div class="info_row_left">
-            <div class="container_order_manage">
-                <div class="container_order_manage_header"><b id="manage_header_b">Заказ 1024</b> на сумму 250 грн</div>
-                <div class="container_order_manage_show"><img src="./images/eyes.svg" alt="">Посмотреть</div>
-                <div class="container_order_manage_edit"><img src="./images/edit.svg" alt="">Изменить</div>
-                <div class="container_order_manage_add_observer"><img src="./images/add_observer.svg" alt="">Добавить
-                    наблюдателя</div>
-                <div class="container_order_manage_Cancel"><img src="./images/cancel.svg" alt="">Отменить</div>
-                <div class="container_order_manage_pay">Оплатить</div>
-            </div>
-        </div>
-        <div class="info_row_right">
-            <img src="./images/map.svg" alt="">
-        </div>
-    </div>
-    <div class="row" id="1026">
-        <div class="number">1026</div>
-        <div class="created">24/9/20</div>
-        <div class="status">В работе</div>
-        <div class="start"> 24/09 18:06</div>
-        <div class="end">24/09 19:08</div>
-        <div class="distance">116 км</div>
-        <div class="number_car"> КО 1204 СА</div>
-        <div class="downtime">1 час</div>
-        <div class="price">1320 грн</div>
-    </div>
-    <div class="info_row" id="991026">
-        <div class="info_row_left">
-            <div class="container_order_manage">
-                <div class="container_order_manage_header"><b id="manage_header_b">Заказ 1024</b> на сумму 250 грн</div>
-                <div class="container_order_manage_show"><img src="./images/eyes.svg" alt="">Посмотреть</div>
-                <div class="container_order_manage_edit"><img src="./images/edit.svg" alt="">Изменить</div>
-                <div class="container_order_manage_add_observer"><img src="./images/add_observer.svg" alt="">Добавить
-                    наблюдателя</div>
-                <div class="container_order_manage_Cancel"><img src="./images/cancel.svg" alt="">Отменить</div>
-                <div class="container_order_manage_pay">Оплатить</div>
-            </div>
-        </div>
-        <div class="info_row_right">
-            <img src="./images/map.svg" alt="">
-        </div>
-    </div>
+    {{/each}}
 </div>
+
+
 <script src="./javascripts/orders.js"></script>
+<script src="../javascripts/maps.js"></script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBf2vtMPr5P0Z3JrYOdvz1vugg4fN1-e8&libraries=directions&callback=initMap"
+    async defer></script>

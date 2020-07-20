@@ -1,0 +1,133 @@
+.container {
+  margin: 50px auto;
+  width: 80%;
+  position: relative;
+}
+
+/* #2F2C4C */
+
+.container_header {
+  background-color: white;
+  color: #282640;
+  font-size: 20px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px 5px 0 0;
+}
+
+.container_body {
+  display: flex;
+  background-color: #2f2c4c;
+  position: relative;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.container_body > div {
+  /* width: 50%; */
+  box-sizing: border-box;
+}
+
+.container_body_right_map {
+  width: 100%;
+  height: calc(100% - 50px);
+  box-sizing: border-box;
+}
+
+.container_body_right {
+  width: 60%;
+  padding: 10px 30px 30px 30px;
+}
+
+.container_body_left {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container_body_right_header {
+  color: white;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.container_row {
+  width: 90%;
+  font-size: 16px;
+  color: white;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #9593a3;
+  padding-bottom: 5px;
+  /* margin: 20px; */
+  margin-top: 20px;
+  box-sizing: border-box;
+}
+
+.container_row_icon {
+  width: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.container_row_right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% - 30px);
+  height: 35px;
+}
+
+.container_row_text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #9593a3;
+}
+
+.font_12 {
+  font-size: 12px;
+}
+
+.color_yellow {
+  color: #ffc552;
+}
+
+.buttons_order {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  /* width: 100%; */
+  /* margin-left: 30px; */
+  border: 0;
+}
+
+.buttons_order div {
+  width: 33.333%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  text-align: center;
+  margin: 5px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+.buttons_order .cancel {
+  background-color: #363455;
+}
+.buttons_order .edit {
+  background-color: #403e63;
+}
+.buttons_order .confirm {
+  background-color: #e37429;
+}
+/* #403E63 */

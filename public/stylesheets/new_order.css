@@ -65,11 +65,164 @@
     flex-wrap: wrap;
 }
 
+.container_rows_input #autocomplete2,
+.container_rows_input #autocomplete {
+    width: 100%;
+}
+
 .select_in {
     padding: 5px 20px;
-    margin: 5px 10px;
+    margin: 10px 0;
+    margin-right: 10px;
     background-color: #403E63;
     font-size: 12px;
     display: flex;
     align-items: center;
+}
+
+.types_car {
+    background-color: #403E63;
+    display: flex;
+    padding: 0 10px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 3px 3px 0 0;
+}
+
+.types_car img {
+    margin-bottom: 10px;
+}
+
+.container_rows input[name="type_car"] {
+    position: absolute;
+    opacity: 0.01;
+    visibility: hidden;
+}
+
+.container_rows input[name="type_car"]:checked+label {
+    border-bottom: 4px solid #E37429;
+    transition: 0.5s;
+}
+
+.form_type_radio {
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+}
+
+.form_type_radio label {
+    margin: 0 10px;
+    transition: 0.5s;
+}
+
+.label_color {
+    color: #9593A3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.label_color input {
+    width: 40px;
+}
+
+.child_container {
+    display: flex;
+}
+
+.right_child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #403E63;
+}
+
+.right_child img {
+    width: 15px;
+    height: 15px;
+}
+
+.selects_child_age {
+    display: flex;
+    margin: 15px 0;
+}
+
+.selects_child_age>img {
+    margin-left: 10px;
+}
+
+.selects_child_age_container {
+    border-bottom: 1px solid white;
+    padding-bottom: 4px;
+
+
+}
+
+.selects_child_age select {
+    outline: none;
+    border: 0;
+    background-color: #2F2C4C;
+    color: white;
+    font-size: 16px;
+}
+
+.selects_child_age select:focus option {
+    outline: none;
+    border: 0;
+    background-color: #2F2C4C;
+    color: white;
+}
+
+.right_child {
+    margin-left: 50px;
+    align-self: baseline;
+    font-size: 12px;
+}
+
+.btn_add_child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn_add_child img {
+    margin-right: 5px;
+}
+
+#text_comment::placeholder {
+    color: white;
+}
+
+#text_comment {
+    margin-top: 10px;
+    color: white;
+    width: 100%;
+    font-size: 16px;
+}
+
+.container_rows_right {
+    width: 100%;
+}
+
+.btn_create_order {
+    margin-left: 50px;
+    background-color: #E37429;
+    border-radius: 3px;
+    padding: 10px 20px;
+    display: flex;
+    width: fit-content;
+    font-weight: bold;
+}
+
+.error {
+    color: #E37429;
+    margin-left: 10px;
+}
+
+.input_error::placeholder {
+    color: #E37429;
 }
