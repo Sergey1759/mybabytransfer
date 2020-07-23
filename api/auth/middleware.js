@@ -12,6 +12,7 @@ module.exports = (req, res, next) => {
             //     message: "is not auth user"
             // })
         }
+        console.log(token);
         const decoded = jwt.verify(token, config.get('secret_jwt'));
         req.user = decoded;
         next()

@@ -1,0 +1,278 @@
+{{>header}}
+<link rel="stylesheet" href="../../stylesheets/header.css">
+<link rel="stylesheet" href="../../stylesheets/profile.css">
+
+<div class="container_body_left">
+    <div class="container_body_header">
+        Личный кабинет водителя
+    </div>
+    <label for="name">
+        <div class="container_row">
+            <div class="container_row_icon">
+                <img src="../../images/man-user.svg" alt="">
+            </div>
+            <div class="container_row_right">
+                <div class="container_row_text">
+                    Имя
+                </div>
+                <div class="container_row_value ">
+                    {{#if user.first_name}}<input type="text" id="name" placeholder="Введите имя..."
+                        value={{user.first_name}}>
+                    {{else}}
+                    <input type="text" id="name" placeholder="Введите имя...">
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </label>
+
+    <label for="lastname">
+        <div class="container_row">
+            <div class="container_row_icon">
+                <img src="../../images/man-user.svg" alt="">
+            </div>
+            <div class="container_row_right">
+                <div class="container_row_text">
+                    Фамилия
+                </div>
+                <div class="container_row_value ">
+                    {{#if user.last_name}}
+                    <input type="text" id="lastname" placeholder="Введите фамилию..." value={{user.last_name}}>
+                    {{else}}
+                    <input type="text" id="lastname" placeholder="Введите фамилию...">
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </label>
+
+    <label for="city">
+        <div class="container_row">
+            <div class="container_row_icon">
+                <img src="../../images/gps_marker.svg" alt="">
+            </div>
+            <div class="container_row_right">
+                <div class="container_row_text">
+                    Город
+                </div>
+                <div class="container_row_value ">
+                    {{#if user.city}}
+                    <input type="text" id="city" placeholder="Введите город..." value={{user.city}}>
+                    {{else}}
+                    <input type="text" id="city" placeholder="Введите город...">
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </label>
+
+    <label for="type_auto">
+        <div class="container_row">
+            <div class="container_row_icon">
+                <img src="../../images/type_car.svg" alt="">
+            </div>
+            <div class="container_row_right">
+                <div class="container_row_text">
+                    Тип авто
+                </div>
+                <div class="container_row_value ">
+                    <select name="" id="type_auto">
+                        {{#if driver_car.isTypes.standard}}
+                        <option value="standard" selected>Стандарт</option>
+                        {{else}}
+                        <option value="standard">Стандарт</option>
+                        {{/if}}
+
+                        {{#if driver_car.isTypes.comfort}}
+                        <option value="comfort" selected>Комфорт</option>
+                        {{else}}
+                        <option value="comfort">Комфорт</option>
+                        {{/if}}
+
+                        {{#if driver_car.isTypes.business}}
+                        <option value="business" selected>Бизнес</option>
+                        {{else}}
+                        <option value="business">Бизнес</option>
+                        {{/if}}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </label>
+
+
+    <label for="number_auto">
+        <div class="container_row">
+            <div class="container_row_icon">
+                <img src="../../images/numbers.svg" alt="">
+            </div>
+            <div class="container_row_right">
+                <div class="container_row_text">
+                    Номер автомобиля
+                </div>
+                <div class="container_row_value ">
+                    {{#if driver_car.number}}
+                    <input type="text" id="number_auto" placeholder="Введите номер автомобиля"
+                        value={{driver_car.number}}>
+                    {{else}}
+                    <input type="text" id="number_auto" placeholder="Введите номер автомобиля">
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </label>
+
+    <label for="description_auto">
+        <div class="container_row">
+            <div class="container_row_icon">
+                <img src="../../images/type_car.svg" alt="">
+            </div>
+            <div class="container_row_right">
+                <div class="container_row_text">
+                    Описание авто прописью
+                </div>
+                <div class="container_row_value ">
+                    {{#if driver_car.description}}
+                    <input type="text" id="description_auto" placeholder="Введите описание авто прописью"
+                        value="{{driver_car.description}}">
+                    {{else}}
+                    <input type=" text" id="description_auto" placeholder="Введите описание авто прописью">
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </label>
+
+    <label for="bank_card">
+        <div class="container_row">
+            <div class="container_row_icon">
+                <img src="../../images/debit-card.svg" alt="">
+            </div>
+            <div class="container_row_right">
+                <div class="container_row_text">
+                    Номер банковской карты
+                </div>
+                <div class="container_row_value ">
+                    {{#if user.bank_card}}
+                    <input type="text" id="bank_card" placeholder="Введите номер банковской карты"
+                        value={{user.bank_card}}>
+                    {{else}}
+                    <input type="text" id="bank_card" placeholder="Введите номер банковской карты">
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </label>
+
+    <label for="price_1">
+        <div class="container_row">
+            <div class="container_row_icon">
+                <img src="../../images/ukraine-hryvna.svg" alt="">
+            </div>
+            <div class="container_row_right">
+                <div class="container_row_text">
+                    Цена подачи автомобиля
+                </div>
+                <div class="container_row_value ">
+                    {{#if driver_car.price_for_call}}
+                    <input type="text" id="price_1" placeholder="Введите цену подачи автомобиля"
+                        value="{{driver_car.price_for_call}}">
+                    {{else}}
+                    <input type="text" id="price_1" placeholder="Введите цену подачи автомобиля">
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </label>
+
+    <label for="price_2">
+        <div class="container_row">
+            <div class="container_row_icon">
+                <img src="../../images/location2.svg" alt="">
+            </div>
+            <div class="container_row_right">
+                <div class="container_row_text">
+                    Цена за км
+                </div>
+                <div class="container_row_value ">
+                    {{#if driver_car.price_for_km}}
+                    <input type="text" id="price_2" placeholder="Введите цену за км"
+                        value="{{driver_car.price_for_km}}">
+                    {{else}}
+                    <input type="text" id="price_2" placeholder="Введите цену за км">
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </label>
+
+    <label for=" type_auto">
+        <div class="container_row">
+            <div class="container_row_icon">
+                <img src="../../images/clock2.svg" alt="">
+            </div>
+            <div class="container_row_right" id="height">
+                <div class="container_row_text">
+                    Время работы:
+                </div>
+                <div class="container_row_value column">
+                    <div class="container_time">
+                        <div class="text">Рабочие часы</div>
+                        {{#if driver_time.start_working}}
+                        <input type="time" placeholder="" id="start_working" value="{{driver_time.start_working}}">
+                        {{else}}
+                        <input type="time" placeholder="" id="start_working">
+                        {{/if}}
+
+                        {{#if driver_time.stop_working}}
+                        <input type="time" placeholder="" id="stop_working" value="{{driver_time.stop_working}}">
+                        {{else}}
+                        <input type="time" placeholder="" id="stop_working">
+                        {{/if}}
+
+                    </div>
+                    <div class="container_time">
+                        <div class="text">Не рабочие часы</div> <input type="time" placeholder="" id="pause_from"><input
+                            type="time" placeholder="" id="pause_to">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </label>
+    <div class="btn" id="btn_auto">
+        <img src="../../images/add_order.svg" alt=""> Добавить группу автокресла
+    </div>
+
+
+    <label id="auto_krislo">
+    </label>
+    {{#each carseats_l}}
+    <div class="back_child" data-option="{{this.seat_id}}" data-id="{{this.id}}"></div>
+    {{/each}}
+    {{!-- <div class="container_row">
+        <div class="container_row_icon">
+            <img src="../../images/baby.svg" alt="">
+        </div>
+        <div class="container_row_right">
+            <div class="container_row_text">
+                Возраст ребенка в автокресле:
+            </div>
+            <div class="container_row_value ">
+                <select name="" id="">
+                    <option value="1">От рождения до 1 года</option>
+                    <option value="2">От 9 месяцев до 4 лет</option>
+                    <option value="3">От 3 до 7 лет</option>
+                    <option value="4">От 6 до 12 лет</option>
+                </select>
+            </div>
+        </div>
+    </div> --}}
+    <div class="container_btn">
+        <div class="button" id="btn_l">Отменить изменения</div>
+        <div class="button" id="btn_r" id="btn_r">Сохранить данные</div>
+    </div>
+</div>
+
+{{>footer}}
+<script src="../../javascripts/post.js"></script>
+<script src="../../javascripts/profile.js"></script>

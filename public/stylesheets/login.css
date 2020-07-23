@@ -23,6 +23,7 @@
     justify-content: center;
     font-family: 'Segoe UI';
     position: relative;
+    overflow: hidden;
 }
 
 .login_signup {
@@ -175,7 +176,7 @@
 }
 
 .active_sign {
-    height: 400px;
+    height: 440px;
 }
 
 .fadein {
@@ -224,6 +225,91 @@
     text-decoration: none;
     font-size: 13px;
 }
+
+.message {
+    background-color: #2F2C4C;
+    box-shadow: 0px 0px 21px 3px rgba(0, 0, 0, 0.54);
+    color: white;
+    width: 350px;
+    border-radius: 5px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 20px;
+    bottom: 80px;
+}
+
+.message_header {
+    padding: 15px;
+    background-color: white;
+    color: #282640;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    font-size: 19px;
+    font-weight: bold;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.message_text {
+    padding: 15px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.anim_message {
+    animation-name: message_anim;
+    animation-timing-function: ease-out;
+    animation-duration: 1s;
+}
+
+#message_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 20px;
+    width: max-content;
+    background-color: #E37429;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.message_out {
+    animation-name: message_out;
+    animation-timing-function: ease-out;
+    animation-duration: 1s;
+}
+
+@keyframes message_anim {
+    0% {
+        opacity: 0;
+        right: -350px;
+    }
+
+    100% {
+        opacity: 1;
+        right: 20px;
+    }
+}
+
+@keyframes message_out {
+    0% {
+        opacity: 1;
+        right: 20px;
+    }
+
+    100% {
+        opacity: 0;
+        right: -350px;
+    }
+}
+
 
 @keyframes opacity_log {
     0% {

@@ -10,13 +10,51 @@ let crypto = require("crypto-js");
 let config = require('config');
 
 let JWT = require('../api/auth/token');
+const users = require("../api/users");
 let random = {};
+let user_pass = {};
 let host;
 
 router.get("/reset_password", function (req, res, next) {
     res.render("reset_password", {
         title: "Express",
     });
+});
+
+router.post("/confirm_email", async function (req, res, next) {
+    console.log(req.body);
+    let user = await users.query.getUserByEmail(req.body.email);
+    console.log(user);
+    if (user.length == 0) {
+        res.send({
+            error: "Не верно указанный email",
+        });
+    } else {
+        res.send({
+            ok: "ok"
+        })
+    }
+});
+
+router.post("/confirm_password", async function (req, res, next) {
+    try {
+        let rand = randomstring.generate(15);
+        host = req.get("host");
+        // prettier-ignore
+        let link = "http://" + req.get("host") + "/users/verify_pass?id=" + rand + "&user_mail=" + req.body.email;
+        let html = `<a href=${link}>google</a>`;
+        let hash_pass = hashed_password(req);
+        user_pass[rand] = hash_pass;
+        mailer(req.body.email, "sadasdasd", "ashgdhasdg", html);
+        res.send({
+            ok: 'Вам отправленно письмо с ссылкой перейдите по ней для подтверждения пароля'
+        })
+    } catch (e) {
+        res.send({
+            error: e
+        })
+    }
+
 });
 
 router.post("/sign", async function (req, res, next) {
@@ -37,7 +75,7 @@ router.post("/sign", async function (req, res, next) {
         if (isUser.length > 0) {
             res.send({
                 error: 'такой email уже существует'
-            })
+            });
         } else {
             // prettier-ignore
             let res_data = await api.query.insert(hash_pass, req.body.user_email, req.body.user_phone, roles[req.body.user_role]);
@@ -47,6 +85,9 @@ router.post("/sign", async function (req, res, next) {
                 await customer.query.insertId(res_data.insertId);
             }
             mailer(req.body.user_email, "sadasdasd", "ashgdhasdg", html);
+            res.send({
+                confirm: 'Регистрация пройшла успешно, вам отправленно письмо с подтверждением на почту'
+            });
         }
 
     } catch (e) {
@@ -65,6 +106,10 @@ router.post("/login", async function (req, res, next) {
         if (hash_pass == users[0].password) {
             let token = JWT.getToken(users[0].id);
             res.json(token);
+        } else {
+            res.json({
+                er: "eroor"
+            })
         }
     }
     console.log(users);
@@ -75,6 +120,20 @@ router.get("/verify", async function (req, res) {
         if (random[req.query.id]) { //email is verified
             delete random[req.query.id];
             await api.query.update_activated(1, req.query.user_mail);
+        } else { //email is not verified
+
+        }
+    } else { //Request is from unknown source
+
+    }
+    res.redirect("/");
+});
+router.get("/verify_pass", async function (req, res) {
+    if (req.protocol + "://" + req.get("host") == "http://" + host) {
+        if (user_pass[req.query.id]) { //email is verified
+            console.log(user_pass);
+            await api.query.update_password_by_email(user_pass[req.query.id], req.query.user_mail);
+            delete user_pass[req.query.id];
         } else { //email is not verified
 
         }

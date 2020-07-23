@@ -13,6 +13,64 @@ let radio_types_car = document.getElementsByName('type_car');
 
 let create_order = document.getElementById('create_order'); // btn for post
 
+let left_child = document.getElementsByClassName('left_child')[0];
+let btn_add_child = document.getElementsByClassName('btn_add_child')[0];
+
+//left_child btn_add_child
+
+let html = `
+<div class="selects_child_age_container">
+                            <select name="" class="select_years" id="select_years">
+                                <option value="0"></option>
+                                <option value="1">1 лет</option>
+                                <option value="2">2 лет</option>
+                                <option value="3">3 лет</option>
+                                <option value="4">4 лет</option>
+                                <option value="5">5 лет</option>
+                                <option value="6">6 лет</option>
+                                <option value="7">7 лет</option>
+                                <option value="8">8 лет</option>
+                                <option value="9">9 лет</option>
+                                <option value="10">10 лет</option>
+                                <option value="11">11 лет</option>
+                                <option value="12">12 лет</option>
+                            </select>
+                            <select name="" class="select_month" id="select_month">
+                                <option value="0"></option>
+                                <option value="4">1 мес</option>
+                                <option value="4">2 мес</option>
+                                <option value="4">3 мес</option>
+                                <option value="4">4 мес</option>
+                                <option value="4">5 мес</option>
+                                <option value="4">6 мес</option>
+                                <option value="4">7 мес</option>
+                                <option value="4">8 мес</option>
+                                <option value="4">9 мес</option>
+                                <option value="4">10 мес</option>
+                                <option value="4">11 мес</option>
+                            </select>
+                            <img src="../images/calendar.svg" alt="">
+                        </div>
+                        <img src="../images/cancel_child.svg" alt="" srcset="" class="delete_child">
+`;
+
+
+function update_remove() {
+    let delete_child = document.getElementsByClassName('delete_child');
+    for (const iterator of delete_child) {
+        iterator.addEventListener('click', () => {
+            left_child.removeChild(iterator.parentElement);
+        })
+    }
+}
+
+btn_add_child.addEventListener('click', () => {
+    let div = document.createElement('div');
+    div.classList.add('selects_child_age');
+    div.innerHTML = html;
+    left_child.appendChild(div);
+    update_remove()
+});
 
 create_order.addEventListener('click', async () => {
 
@@ -75,6 +133,7 @@ create_order.addEventListener('click', async () => {
         round_trip: side_by_side.checked,
         comment: text_comment.value,
     }
+    console.log(babies);
     await postData('/orders/create', data).then(res => {
         console.log(res);
         location.replace(`/orders/confirm_order/${res.order}`)
