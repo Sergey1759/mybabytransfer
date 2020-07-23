@@ -70,8 +70,9 @@
 .container_row_value {
     position: relative;
     display: flex;
-    /* width: 60%; */
+    width: 60%;
     position: relative;
+    flex-direction: row-reverse;
 }
 
 .container_row_value input {
@@ -92,10 +93,89 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    width: 60%;
 }
 
 .container_time {
     display: flex;
     position: relative;
+}
+
+#height {
+    height: inherit;
+}
+
+.container_time .text {
+    width: 40%;
+}
+
+.container_time input {
+    width: min-content;
+}
+
+.btn {
+    align-self: flex-start;
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+    background-color: #403E63;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.btn img {
+    margin-right: 5px;
+}
+
+.container_btn {
+    display: flex;
+    width: 80%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    color: white;
+    font-weight: bold;
+}
+
+.container_btn div {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 
 }
+
+#btn_l {
+    background-color: #403E63;
+}
+
+#btn_r {
+    background-color: #E37429;
+}
+
+.container_row_value select {
+    background-color: #2F2C4C;
+    border: 0;
+    outline: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.container_row_value select option {
+    padding: 10px 20px;
+}
+
+.container_row_value select:focus {
+    background-color: #2F2C4C;
+    border: 0;
+    outline: none;
+}
+
+.container_row_value input::placeholder {
+    color: #9593A3;
+}
+
+/* #9593A3 */

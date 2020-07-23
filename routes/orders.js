@@ -8,6 +8,8 @@ let Api_orders = require("../api/orders");
 let Api_customers = require("../api/customer");
 let Api_address = require("../api/address");
 let Api_addresses = require("../api/addresses");
+let Api_age = require("../api/age");
+const age = require("../api/age");
 
 router.get("/page/:id", middleware, async function (req, res, next) {
     console.log("Cookies: ", req.cookies);
@@ -68,6 +70,7 @@ router.get("/confirm_order/:id", middleware, async function (req, res, next) {
 });
 
 router.post("/create", middleware, async function (req, res, next) {
+
     let m = await google_maps.get(
         req.body.Filing_Address,
         req.body.Shipping_Address
@@ -77,16 +80,16 @@ router.post("/create", middleware, async function (req, res, next) {
         m[0].distance.value,
         req.body.round_trip
     );
-    // console.log(req.user.userId);
-    // console.log(price);
-    console.log(m);
+
 
     let arrive_time = get_arrive_time(req.body.date, m[0].duration.value);
     let customer = await Api_customers.query.find_by_userId(req.user.userId);
     let customer_id = customer[0].id;
     let date = new Date(new Date().getTime() + 3 * 60 * 60 * 1000);
     let calling_date = new Date(req.body.date);
-    console.log(date.toMysqlFormat());
+
+
+
     let order = await Api_orders.query.insert(
         customer_id,
         arrive_time.toMysqlFormat(),
@@ -104,11 +107,16 @@ router.post("/create", middleware, async function (req, res, next) {
     await Api_addresses.query.insert(order.insertId, start_address.insertId);
     await Api_addresses.query.insert(order.insertId, end_address.insertId);
 
-    // let from = await Api_address.query.insert_address();
-    // let from = console.log(order.insertId);
+    for (const iterator of req.body.babies) {
+        await age.query.insert(order.insertId, get_child_age(iterator));
+    }
+
+
     res.status(200).send({
         order: order.insertId
     })
+
+
 });
 
 module.exports = router;
@@ -134,3 +142,7 @@ Date.prototype.toMysqlFormat = function () {
         twoDigits(this.getUTCSeconds())
     );
 };
+
+function get_child_age(obj) {
+    return obj.years * 12 + (+obj.month);
+}

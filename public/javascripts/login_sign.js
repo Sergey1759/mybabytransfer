@@ -15,12 +15,21 @@ let sign_password = document.getElementById('sign_password');
 let sign_phone = document.getElementById('sign_phone');
 let select_role_user = document.getElementById('select_role_user');
 
-
+let message_btn = document.getElementById('message_btn');
+let message = document.getElementsByClassName('message')[0];
 
 let btn_click_login = 1;
 let btn_click_sign = 0;
 
+let audio = new Audio('../sound/hollow.mp3');
 
+
+message_btn.addEventListener('click', () => {
+    message.classList.add('message_out');
+    setTimeout(() => {
+        message.style.display = "none";
+    }, 1000);
+});
 
 btn_login.addEventListener('click', () => {
     btn_click_login++;
@@ -112,10 +121,11 @@ function clear_placeholder_sign() {
 async function check_sign() {
     let sign_email = document.getElementById('sign_email');
     let sign_password = document.getElementById('sign_password');
+    let confirm_password = document.getElementById('confirm_password');
     let sign_phone = document.getElementById('sign_phone');
     let select_role_user = document.getElementById('select_role_user');
 
-    let isTrue = 3;
+    let isTrue = 4;
     if (!validator_email(sign_email.value)) {
         sign_email.classList.add('error_placeholder');
         sign_email.placeholder = "Не верно указан e-mail";
@@ -147,6 +157,15 @@ async function check_sign() {
         isTrue--;
     }
 
+    if (confirm_password.value != sign_password.value) {
+        confirm_password.classList.add('error_placeholder');
+        confirm_password.placeholder = "Пароли не совпадают";
+        confirm_password.value = '';
+    } else {
+        sign_phone.classList.remove('error_placeholder');
+        sign_phone.placeholder = "Повторите пароль";
+        isTrue--;
+    }
 
     let user_role = select_role_user.options[select_role_user.selectedIndex].value;
     if (isTrue == 0) {
@@ -157,9 +176,7 @@ async function check_sign() {
             user_role: user_role
         }
         let res = await sign(data);
-        if (res.error) {
 
-        }
         if (res.error) {
             sign_email.classList.add('error_placeholder');
             sign_email.placeholder = res.error;
@@ -167,6 +184,11 @@ async function check_sign() {
         } else {
             sign_email.classList.remove('error_placeholder');
             sign_email.placeholder = "Введите e-mail";
+        }
+        if (res.confirm) {
+            message.style.display = "flex";
+            message.classList.add('anim_message');
+            audio.play();
         }
     }
 }
@@ -213,7 +235,7 @@ function login(data) {
         .then((res) => {
             // localStorage.setItem('token', res);
             document.cookie = `token=${res}`;
-            window.location.href = "/orders"
+            window.location.href = "/orders/page/1"
         });
 }
 
