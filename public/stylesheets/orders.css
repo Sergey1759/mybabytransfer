@@ -219,6 +219,10 @@ body {
   background-color: #e37429 !important;
 }
 
+#order_header {
+  color: #F6A72E;
+}
+
 @keyframes animation_order {
   0% {
     height: 0;
