@@ -88,6 +88,14 @@ function check_login() {
         email_login.placeholder = "Введите e-mail";
         true_email = true;
     }
+    if (password_login.value.length == 0) {
+        password_login.classList.add('error_placeholder');
+        password_login.placeholder = "Поле не должно быть пустым";
+        password_login.value = "";
+    } else {
+        password_login.classList.remove('error_placeholder');
+        password_login.placeholder = "Введите ваш пароль";
+    }
     if (true_email) {
         let data = {
             user_email: email_login.value,
