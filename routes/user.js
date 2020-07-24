@@ -107,28 +107,29 @@ router.post("/login", async function (req, res, next) {
     let hash_pass = hashed_password(req);
     let users = await api.query.getUserByEmail(req.body.user_email);
     console.log(users[0]); //activated:
-    if (users[0].activated == 0) {
+
+
+    if (users.length == 0) {
+        res.json({
+            er: "Не верный email или пароль"
+        })
+    } else if (users[0].activated == 0) {
         res.send({
             er: "Подтвердите email"
         });
     } else {
-        if (users.length == 0) {
+        if (hash_pass == users[0].password) {
+            let token = JWT.getToken(users[0].id);
+            res.json({
+                token
+            });
+        } else {
             res.json({
                 er: "Не верный email или пароль"
             })
-        } else {
-            if (hash_pass == users[0].password) {
-                let token = JWT.getToken(users[0].id);
-                res.json({
-                    token
-                });
-            } else {
-                res.json({
-                    er: "Не верный email или пароль"
-                })
-            }
         }
     }
+
 
     console.log(users);
 });
