@@ -162,8 +162,8 @@ async function check_sign() {
         confirm_password.placeholder = "Пароли не совпадают";
         confirm_password.value = '';
     } else {
-        sign_phone.classList.remove('error_placeholder');
-        sign_phone.placeholder = "Повторите пароль";
+        confirm_password.classList.remove('error_placeholder');
+        confirm_password.placeholder = "Повторите пароль";
         isTrue--;
     }
 
@@ -234,8 +234,16 @@ function login(data) {
     postData('/users/login', data)
         .then((res) => {
             // localStorage.setItem('token', res);
-            document.cookie = `token=${res}`;
-            window.location.href = "/orders/page/1"
+            if (res.er) {
+                email_login.classList.add('error_placeholder');
+                email_login.placeholder = res.er;
+                email_login.value = '';
+            }
+            if (res.token) {
+                document.cookie = `token=${res.token}`;
+                window.location.href = "/orders/page/1"
+            }
+
         });
 }
 

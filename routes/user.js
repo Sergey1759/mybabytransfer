@@ -42,10 +42,14 @@ router.post("/confirm_password", async function (req, res, next) {
         host = req.get("host");
         // prettier-ignore
         let link = "http://" + req.get("host") + "/users/verify_pass?id=" + rand + "&user_mail=" + req.body.email;
-        let html = `<a href=${link}>google</a>`;
+        let html = `
+        <h1>Замена пароля</h1>
+        <p>Для замены пароля перейдите по ссылке <a href=${link}>ссылке</a></p>
+        <p>Если это были не вы то свяжетись с нами zakaz@babytransfer.com</p>
+        `;
         let hash_pass = hashed_password(req);
         user_pass[rand] = hash_pass;
-        mailer(req.body.email, "sadasdasd", "ashgdhasdg", html);
+        mailer(req.body.email, "Администрация BabyTransfer", "Подтверждение замены пароля", html);
         res.send({
             ok: 'Вам отправленно письмо с ссылкой перейдите по ней для подтверждения пароля'
         })
@@ -62,7 +66,11 @@ router.post("/sign", async function (req, res, next) {
     host = req.get("host");
     // prettier-ignore
     let link = "http://" + req.get("host") + "/users/verify?id=" + rand + "&user_mail=" + req.body.user_email;
-    let html = `<a href=${link}>google</a>`;
+    let html = `
+        <h1>Подтверждение регистрации</h1>
+        <p>Для подтверждения регистрации перейдите по ссылке <a href=${link}>ссылке</a></p>
+        <p>Если это были не вы то свяжетись с нами zakaz@babytransfer.com</p>
+        `;
     random[rand] = true;
     let hash_pass = hashed_password(req);
 
@@ -84,7 +92,7 @@ router.post("/sign", async function (req, res, next) {
             } else if (req.body.user_role == 'customer') {
                 await customer.query.insertId(res_data.insertId);
             }
-            mailer(req.body.user_email, "sadasdasd", "ashgdhasdg", html);
+            mailer(req.body.user_email, "Администрация BabyTransfer", "Подтверждение регистрации", html);
             res.send({
                 confirm: 'Регистрация пройшла успешно, вам отправленно письмо с подтверждением на почту'
             });
@@ -98,20 +106,30 @@ router.post("/sign", async function (req, res, next) {
 router.post("/login", async function (req, res, next) {
     let hash_pass = hashed_password(req);
     let users = await api.query.getUserByEmail(req.body.user_email);
-    if (users.length == 0) {
-        res.json({
-            er: "eroor"
-        })
+    console.log(users[0]); //activated:
+    if (users[0].activated == 0) {
+        res.send({
+            er: "Подтвердите email"
+        });
     } else {
-        if (hash_pass == users[0].password) {
-            let token = JWT.getToken(users[0].id);
-            res.json(token);
-        } else {
+        if (users.length == 0) {
             res.json({
-                er: "eroor"
+                er: "Не верный email или пароль"
             })
+        } else {
+            if (hash_pass == users[0].password) {
+                let token = JWT.getToken(users[0].id);
+                res.json({
+                    token
+                });
+            } else {
+                res.json({
+                    er: "Не верный email или пароль"
+                })
+            }
         }
     }
+
     console.log(users);
 });
 

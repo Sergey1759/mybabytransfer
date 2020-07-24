@@ -57,10 +57,13 @@ router.get("/confirm_order/:id", middleware, async function (req, res, next) {
     let address = await Api_addresses.query.getById(order_l.id);
     order_l.start_address = getStr(address[0].address);
     order_l.end_address = getStr(address[1].address);
+    order_l.calling_time = get_date(order_l.calling_time);
+
+    console.log(order_l);
 
     function getStr(str) {
         let string = str.split(',');
-        string.splice(2, string.length);
+        string.splice(1, string.length);
         return string.join(' , ');
     }
     res.render("confirm_order", {
@@ -145,4 +148,8 @@ Date.prototype.toMysqlFormat = function () {
 
 function get_child_age(obj) {
     return obj.years * 12 + (+obj.month);
+}
+
+function get_date(date) {
+    return `${new Date(date).getUTCHours()}:${new Date(date).getUTCMinutes()} ${new Date(date).getUTCDate()}/${ new Date(date).getUTCMonth()}/${new Date(date).getUTCFullYear()}`
 }
