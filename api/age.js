@@ -5,7 +5,9 @@ let query = {};
 query.insert = (order_id, age) => {
     return ConstructorQuery(`INSERT INTO age (order_id,age) VALUES('${order_id}','${age}');`)();
 };
-
+query.getByOrderId = (order_id) => {
+    return ConstructorQuery(`select * from age where order_id = ${order_id};`)();
+};
 
 
 

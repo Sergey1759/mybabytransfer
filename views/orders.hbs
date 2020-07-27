@@ -1,6 +1,38 @@
 <link rel="stylesheet" href="../.././stylesheets/orders.css">
 <link rel="stylesheet" href="../.././stylesheets/header.css">
-{{> header}}
+<div class="header">
+    <a href="/orders/page/1">
+        <div class="logo">
+            <img src="../../images/logo.svg" alt="">
+        </div>
+    </a>
+    <div class="menu">
+        <a href="/orders/page/1" id="order_header">
+            <div class="menu_item"> <img src=" ../../images/burger.svg" alt=""> Мои заказы </div>
+        </a>
+        <a href="/customer/profile/" id="profile_header">
+            <div class="menu_item"> <img src="../../images/requisites.svg" alt=""> Мои реквизиты </div>
+        </a>
+        <div class="menu_item"> <img src="../../images/reports.svg" alt=""> Отчеты</div>
+        <a href="/orders/new_order">
+            <div class="new_order"> <img src="../../images/add_order.svg" alt=""> Новый заказ</div>
+        </a>
+    </div>
+    <div class="profile">
+        <img src="../../images/notification.svg" alt="">
+        <div class="profile_name">
+            Екатерина
+        </div>
+        <div class="profile_lastname">
+            Марченко
+        </div>
+        <div class="profile_photo"
+            style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/94/Rubens-Lady.of.the.Chamber.to.Infanta.Isabella.jpg');">
+        </div>
+        <img src="../../images/door.svg" alt="exit" id="exit">
+    </div>
+</div>
+<script src="../../javascripts/header.js"></script>
 
 <div class="type_orders_container">
     <div class="type_orders ">
@@ -43,11 +75,12 @@
             <div class="container_order_manage">
                 <div class="container_order_manage_header"><b id="manage_header_b">Заказ {{this.id}}</b> на сумму
                     {{this.cost}} грн</div>
-                <div class="container_order_manage_show"><img src="./images/eyes.svg" alt="">Посмотреть</div>
-                <div class="container_order_manage_edit"><img src="./images/edit.svg" alt="">Изменить</div>
-                <div class="container_order_manage_add_observer"><img src="./images/add_observer.svg" alt="">Добавить
+                <div class="container_order_manage_show"><img src="../../images/eyes.svg" alt="">Посмотреть</div>
+                <div class="container_order_manage_edit"><img src="../../images/edit.svg" alt="">Изменить</div>
+                <div class="container_order_manage_add_observer"><img src="../../images/add_observer.svg"
+                        alt="">Добавить
                     наблюдателя</div>
-                <div class="container_order_manage_Cancel"><img src="./images/cancel.svg" alt="">Отменить</div>
+                <div class="container_order_manage_Cancel"><img src="../../images/cancel.svg" alt="">Отменить</div>
                 <div class="container_order_manage_pay">Оплатить</div>
             </div>
         </div>
@@ -76,15 +109,20 @@
     <a href="/orders/page/{{pages.now}}">
         <div class="now active_pagination">{{pages.now}}</div>
     </a>
+    {{#if pages.next}}
     <a href="/orders/page/{{pages.next}}">
         <div class="next">{{pages.next}}</div>
     </a>
+    {{/if}}
+    {{#if pages.next_next}}
     <a href="/orders/page/{{pages.next_next}}">
         <div class="next_next">{{pages.next_next}}</div>
     </a>
-    <a href="/orders/page/1">
+    {{/if}}
+    <a href="/orders/page/{{pages.end}}">
         <div class="end_pages">&gt;</div>
     </a>
+
 </div>
 {{>footer}}
 <script src="../.././javascripts/orders.js"></script>

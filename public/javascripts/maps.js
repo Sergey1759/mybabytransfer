@@ -1,9 +1,11 @@
 let count_arr = 0;
+let arr_maps = [];
+let carMarker;
 
 function initMap() {
     let maps = document.getElementsByClassName('maps');
     // console.log(maps);
-    let arr_maps = [];
+
 
     for (const iterator of maps) {
         let directionsService = new google.maps.DirectionsService();
@@ -30,7 +32,17 @@ function initMap() {
 
             travelMode: google.maps.DirectionsTravelMode.DRIVING,
         };
+        let image = '../../images/car.png'
+        carMarker = new google.maps.Marker({
+            position: {
+                lat: 49.5522381,
+                lng: 25.5943475
+            },
+            map: arr_maps[count_arr],
+            icon: image
+        });
 
+        // carMarker.setMap(null);
 
         directionsService.route(request, function (response, status) {
             if (status == google.maps.DirectionsStatus.OK) {

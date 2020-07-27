@@ -8,11 +8,17 @@ for (const iterator of row) {
         let id = 99 + iterator.id;
         let info_row_local = document.getElementById(id);
         if (info_row_local.style.display == 'flex') {
-            // info_row_local.style.display = 'none';
+            open_item[0].classList.add('animation_order_reverse');
+            setTimeout(() => {
+                open_item[0].style.display = 'none';
+                open_item[0].classList.remove('animation_order_reverse');
+                open_item.splice(0, 1);
+            }, 500);
+            buf = 2;
         } else {
             buf--;
             open_item.push(info_row_local);
-            // clear_reverse();
+
             if (buf <= 0) {
                 open_item[0].classList.add('animation_order_reverse');
                 console.log(open_item[0]);

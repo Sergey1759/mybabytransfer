@@ -80,21 +80,13 @@ btn_sign.addEventListener('click', () => {
 function check_login() {
     let true_email = false;
     if (!validator_email(email_login.value)) {
-        email_login.classList.add('error_placeholder');
-        email_login.placeholder = "Не верно указан e-mail";
-        email_login.value = '';
+        create_tooltip(email_login, 'Не верно указан e-mail');
     } else {
-        email_login.classList.remove('error_placeholder');
-        email_login.placeholder = "Введите e-mail";
         true_email = true;
     }
     if (password_login.value.length == 0) {
-        password_login.classList.add('error_placeholder');
-        password_login.placeholder = "Поле не должно быть пустым";
-        password_login.value = "";
-    } else {
-        password_login.classList.remove('error_placeholder');
-        password_login.placeholder = "Введите ваш пароль";
+        create_tooltip(password_login, 'Поле не должно быть пустым');
+        return
     }
     if (true_email) {
         let data = {
@@ -112,6 +104,7 @@ function clear_placeholder_login() {
     email_login.placeholder = "Введите e-mail";
     password_login.value = '';
     email_login.value = '';
+    reset_tooltip()
 }
 
 function clear_placeholder_sign() {
@@ -124,6 +117,7 @@ function clear_placeholder_sign() {
     sign_email.value = '';
     sign_password.value = '';
     sign_phone.value = '';
+    reset_tooltip()
 }
 
 async function check_sign() {
@@ -135,43 +129,27 @@ async function check_sign() {
 
     let isTrue = 4;
     if (!validator_email(sign_email.value)) {
-        sign_email.classList.add('error_placeholder');
-        sign_email.placeholder = "Не верно указан e-mail";
-        sign_email.value = '';
+        create_tooltip(sign_email, "Не верно указан e-mail");
     } else {
-        sign_email.classList.remove('error_placeholder');
-        sign_email.placeholder = "Введите e-mail";
         isTrue--;
     }
 
     if (!validator_password(sign_password.value)) {
-        sign_password.classList.add('error_placeholder');
-        sign_password.placeholder = "Не менее 5 знаков и одна буква";
-        sign_password.value = '';
+        create_tooltip(sign_password, "Не менее 5 знаков и одна буква");
     } else {
-        sign_password.classList.remove('error_placeholder');
-        sign_password.placeholder = "Введите ваш пароль";
         isTrue--;
     }
 
 
     if (!validator_phone(sign_phone.value)) {
-        sign_phone.classList.add('error_placeholder');
-        sign_phone.placeholder = "Формат телефона 380123456789";
-        sign_phone.value = '';
+        create_tooltip(sign_phone, "Формат телефона 380123456789");
     } else {
-        sign_phone.classList.remove('error_placeholder');
-        sign_phone.placeholder = "Номер телефона";
         isTrue--;
     }
 
-    if (confirm_password.value != sign_password.value) {
-        confirm_password.classList.add('error_placeholder');
-        confirm_password.placeholder = "Пароли не совпадают";
-        confirm_password.value = '';
+    if (confirm_password.value != sign_password.value || confirm_password.value == '') {
+        create_tooltip(confirm_password, "Пароли не совпадают");
     } else {
-        confirm_password.classList.remove('error_placeholder');
-        confirm_password.placeholder = "Повторите пароль";
         isTrue--;
     }
 
@@ -187,11 +165,7 @@ async function check_sign() {
 
         if (res.error) {
             sign_email.classList.add('error_placeholder');
-            sign_email.placeholder = res.error;
-            sign_email.value = '';
-        } else {
-            sign_email.classList.remove('error_placeholder');
-            sign_email.placeholder = "Введите e-mail";
+            create_tooltip(sign_email, res.error);
         }
         if (res.confirm) {
             message.style.display = "flex";
@@ -238,20 +212,20 @@ async function postData(url = '', data = {}) {
 
 
 
-function login(data) {
-    postData('/users/login', data)
-        .then((res) => {
+async function login(data) {
+    await postData('/users/login', data)
+        .then(async (res) => {
             // localStorage.setItem('token', res);
             if (res.er) {
-                email_login.classList.add('error_placeholder');
-                email_login.placeholder = res.er;
-                email_login.value = '';
+                create_tooltip(email_login, res.er);
+                create_tooltip(password_login, res.er);
             }
             if (res.token) {
-                document.cookie = `token=${res.token}`;
-                window.location.href = "/orders/page/1"
+                document.cookie = `token=${res.token};`;
+                console.log(res.token) //document.cookie
+                console.log(document.cookie) //document.cookie
+                window.location.href = "/orders/page/1";
             }
-
         });
 }
 
