@@ -1,6 +1,39 @@
 <link rel="stylesheet" href="../../stylesheets/confirm_order.css">
 <link rel="stylesheet" href="../../stylesheets/header.css">
-{{> header}}
+<link rel="stylesheet" href=".././stylesheets/header.css">
+<div class="header">
+    <a href="/orders/page/1">
+        <div class="logo">
+            <img src="../../images/logo.svg" alt="">
+        </div>
+    </a>
+    <div class="menu">
+        <a href="/orders/page/1" id="order_header">
+            <div class="menu_item"> <img src=" ../../images/burger_not_active.svg" alt=""> Мои заказы </div>
+        </a>
+        <a href="/customer/profile/" id="profile_header">
+            <div class="menu_item"> <img src="../../images/requisites.svg" alt=""> Мои реквизиты </div>
+        </a>
+        <div class="menu_item"> <img src="../../images/reports.svg" alt=""> Отчеты</div>
+        <a href="/orders/new_order">
+            <div class="new_order"> <img src="../../images/add_order.svg" alt=""> Новый заказ</div>
+        </a>
+    </div>
+    <div class="profile">
+        <img src="../../images/notification.svg" alt="">
+        <div class="profile_name">
+            Екатерина
+        </div>
+        <div class="profile_lastname">
+            Марченко
+        </div>
+        <div class="profile_photo"
+            style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/94/Rubens-Lady.of.the.Chamber.to.Infanta.Isabella.jpg');">
+        </div>
+        <img src="../../images/door.svg" alt="exit" id="exit">
+    </div>
+</div>
+<script src="../../javascripts/header.js"></script>
 
 <div class="container">
     <div class="container_header">
@@ -59,11 +92,11 @@
                         Тип автомобиля
                     </div>
                     <div class="container_row_value ">
-                        Седан
+                        {{order_l.type_id}}
                     </div>
                 </div>
             </div>
-
+            {{#each order_l.child}}
             <div class="container_row">
                 <div class="container_row_icon">
                     <img src="../../images/baby.svg" alt="">
@@ -73,11 +106,13 @@
                         Возраст ребенка
                     </div>
                     <div class="container_row_value ">
-                        04 лет 05 мес
+                        {{this}}
                     </div>
                 </div>
             </div>
-            <div class="container_row">
+            {{/each}}
+
+            {{!-- <div class="container_row">
                 <div class="container_row_icon">
                     <img src="../../images/baby.svg" alt="">
                 </div>
@@ -89,7 +124,7 @@
                         11 мес
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="container_row">
                 <div class="container_row_icon">
                     <img src="../../images/chat.svg" alt="">
@@ -99,7 +134,7 @@
                         Комментарий
                     </div>
                     <div class="container_row_value ">
-                        Пустой багажник
+                        {{order_l.comment}}
                     </div>
                 </div>
             </div>
@@ -112,7 +147,7 @@
                         Расчетное ресстояние
                     </div>
                     <div class="container_row_value color_yellow">
-                        28 км
+                        {{order_l.distance}} км
                     </div>
                 </div>
             </div>
@@ -125,7 +160,7 @@
                         Расчетное время прибытия
                     </div>
                     <div class="container_row_value color_yellow">
-                        18:20 12/10/19
+                        {{order_l.arrival_time}}
                     </div>
                 </div>
             </div>
@@ -153,7 +188,8 @@
         </div>
         <div class="container_body_right">
             <div class="container_body_right_header">Карта вашего маршрута</div>
-            <div class="container_body_right_map" id="map"></div>
+            <div class="container_body_right_map" id="map" data-origin="{{order_l.start}}"
+                data-destination="{{order_l.end}}"></div>
         </div>
     </div>
 </div>

@@ -1,12 +1,87 @@
-{{>header}}
 <link rel="stylesheet" href="../../stylesheets/header.css">
 <link rel="stylesheet" href="../../stylesheets/customer_profile.css">
+
+<div class="header">
+    <a href="/orders/page/1">
+        <div class="logo">
+            <img src="../../images/logo.svg" alt="">
+        </div>
+    </a>
+    <div class="menu">
+        <a href="/orders/page/1" id="order_header">
+            <div class="menu_item"> <img src=" ../../images/burger_not_active.svg" alt=""> Мои заказы </div>
+        </a>
+        <a href="/customer/profile/" id="profile_header">
+            <div class="menu_item"> <img src="../../images/profile_active.svg" alt=""> Мои реквизиты </div>
+        </a>
+        <div class="menu_item"> <img src="../../images/reports.svg" alt=""> Отчеты</div>
+        <a href="/orders/new_order">
+            <div class="new_order"> <img src="../../images/add_order.svg" alt=""> Новый заказ</div>
+        </a>
+    </div>
+    <div class="profile">
+        <img src="../../images/notification.svg" alt="">
+        <div class="profile_name">
+            Екатерина
+        </div>
+        <div class="profile_lastname">
+            Марченко
+        </div>
+        <div class="profile_photo"
+            style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/94/Rubens-Lady.of.the.Chamber.to.Infanta.Isabella.jpg');">
+        </div>
+        <img src="../../images/door.svg" alt="exit" id="exit">
+    </div>
+</div>
+<script src="../../javascripts/header.js"></script>
+
 
 <div class="profile_container">
     <div class="header_text">
         Личный кабинет клиента
     </div>
+    <div class="container">
+        <div class="text">
+            <div class="customer">
+                <div class="left">
+                    <div class="img"
+                        style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/94/Rubens-Lady.of.the.Chamber.to.Infanta.Isabella.jpg');">
+                    </div>
+                    <div id="btn_add_img">
+                        Загрузить фото
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="inputs">
+                        <div class="description"><img src="../../images/man-user.svg" alt="man-user">
+                            <div class="inputs__left">
+                                Имя
+                            </div>
+                        </div>
+                        <input type="text">
+                    </div>
+                    <div class="inputs">
+                        <div class="description"><img src="../../images/man-user.svg" alt="man-user">
+                            <div class="inputs__left">
+                                Фамилия
+                            </div>
+                        </div>
+                        <input type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="map" id="map">
+
+        </div>
+    </div>
 </div>
 
 {{>footer}}
 <script src="../../javascripts/post.js"></script>
+<script src="../../javascripts/map.js"></script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBf2vtMPr5P0Z3JrYOdvz1vugg4fN1-e8&libraries=places&callback=initMap"
+    async defer></script>

@@ -1,0 +1,55 @@
+.tooltip {
+    position: absolute;
+    top: -20px;
+    background-color: #0E0D1C;
+    color: #F6A72E;
+    padding: 7px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    left: 20px;
+    z-index: 50;
+}
+
+.tooltip::after {
+    position: absolute;
+    bottom: -5px;
+    background-color: #0E0D1C;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    left: 20px;
+    content: '';
+    z-index: -9;
+}
+
+.fade_in {
+    animation-name: fade_in;
+    animation-timing-function: ease-in-out;
+    animation-duration: 0.5s;
+}
+
+@keyframes fade_in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fade_out {
+    animation-name: fade_out;
+    animation-timing-function: ease-in-out;
+    animation-duration: 0.5s;
+}
+
+@keyframes fade_out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}

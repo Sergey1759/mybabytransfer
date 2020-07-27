@@ -41,7 +41,7 @@ router.post("/confirm_password", async function (req, res, next) {
         let rand = randomstring.generate(15);
         host = req.get("host");
         // prettier-ignore
-        let link = "http://" + req.get("host") + "/users/verify_pass?id=" + rand + "&user_mail=" + req.body.email;
+        let link = "https://" + req.get("host") + "/users/verify_pass?id=" + rand + "&user_mail=" + req.body.email;
         let html = `
         <h1>Замена пароля</h1>
         <p>Для замены пароля перейдите по ссылке <a href=${link}>ссылке</a></p>
@@ -65,7 +65,7 @@ router.post("/sign", async function (req, res, next) {
     let rand = randomstring.generate(15);
     host = req.get("host");
     // prettier-ignore
-    let link = "http://" + req.get("host") + "/users/verify?id=" + rand + "&user_mail=" + req.body.user_email;
+    let link = "https://" + req.get("host") + "/users/verify?id=" + rand + "&user_mail=" + req.body.user_email;
     let html = `
         <h1>Подтверждение регистрации</h1>
         <p>Для подтверждения регистрации перейдите по ссылке <a href=${link}>ссылке</a></p>
@@ -135,7 +135,7 @@ router.post("/login", async function (req, res, next) {
 });
 
 router.get("/verify", async function (req, res) {
-    if (req.protocol + "://" + req.get("host") == "http://" + host) {
+    if (req.protocol + "://" + req.get("host") == "https://" + host) {
         if (random[req.query.id]) { //email is verified
             delete random[req.query.id];
             await api.query.update_activated(1, req.query.user_mail);
@@ -148,7 +148,7 @@ router.get("/verify", async function (req, res) {
     res.redirect("/");
 });
 router.get("/verify_pass", async function (req, res) {
-    if (req.protocol + "://" + req.get("host") == "http://" + host) {
+    if (req.protocol + "://" + req.get("host") == "https://" + host) {
         if (user_pass[req.query.id]) { //email is verified
             console.log(user_pass);
             await api.query.update_password_by_email(user_pass[req.query.id], req.query.user_mail);
@@ -160,6 +160,11 @@ router.get("/verify_pass", async function (req, res) {
 
     }
     res.redirect("/");
+});
+
+router.post("/logout", async function (req, res, next) {
+    res.cookie('token', '');
+    res.redirect('/orders/confirm_order/30')
 });
 
 function hashed_password(req) {

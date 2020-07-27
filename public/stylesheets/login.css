@@ -8,6 +8,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    position: relative;
 }
 
 .wrapper_login>img {
@@ -97,6 +98,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    position: relative;
 }
 
 .input_rows input {
@@ -285,6 +287,12 @@
     animation-timing-function: ease-out;
     animation-duration: 1s;
 }
+
+.form_login {
+    position: relative;
+}
+
+
 
 @keyframes message_anim {
     0% {
