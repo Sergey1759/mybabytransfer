@@ -19,44 +19,30 @@ message_btn.addEventListener('click', () => {
 post.addEventListener('click', async () => {
     let isTrue = 3;
     if (!validator_email(email.value)) {
-        email.classList.add('error_placeholder');
-        email.placeholder = "Не верно указан e-mail";
-        email.value = '';
+        create_tooltip(email, 'Не верно указан e-mail');
     } else {
-        email.classList.remove('error_placeholder');
-        email.placeholder = "Введите e-mail";
         isTrue--;
     }
 
     if (!validator_password(password.value)) {
-        password.classList.add('error_placeholder');
-        password.placeholder = "Не менее 5 знаков и одна буква";
-        password.value = '';
+        create_tooltip(password, 'Не менее 5 знаков и одна буква');
     } else {
-        password.classList.remove('error_placeholder');
-        password.placeholder = "Введите ваш пароль";
         isTrue--;
     }
 
-    if (confirm_password.value != password.value) {
-        confirm_password.classList.add('error_placeholder');
-        confirm_password.placeholder = "Пароли не совпадают";
-        confirm_password.value = '';
+    if (confirm_password.value != password.value || confirm_password.value == '') {
+        create_tooltip(confirm_password, 'Пароли не совпадают');
     } else {
-        confirm_password.classList.remove('error_placeholder');
-        confirm_password.placeholder = "Повторите пароль";
         isTrue--;
     }
     let email_ = {
         email: email.value
     }
-    console.log(isTrue);
+
     if (isTrue == 0) {
         let res = await postData('/users/confirm_email', email_);
         if (res.error) {
-            email.classList.add('error_placeholder');
-            email.placeholder = res.error;
-            email.value = '';
+            create_tooltip(email, res.error);
         } else if (res.ok) {
             let data = {
                 email: email.value,
@@ -75,7 +61,6 @@ post.addEventListener('click', async () => {
                 message_text.innerText = pass.error;
                 audio.play();
             }
-            console.log(pass);
         }
     }
 });
