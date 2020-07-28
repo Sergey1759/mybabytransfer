@@ -26,6 +26,10 @@ query.update_city = (city, id) => {
     return ConstructorQuery(`Update users set city="${city}" where id = ${id}`)();
 };
 
+query.update_avatar_url = (avatar_url, id) => {
+    return ConstructorQuery(`Update users set avatar_url="${avatar_url}" where id = ${id}`)();
+};
+
 query.update_password_by_email = (password, email) => {
     return ConstructorQuery(`Update users set password="${password}" where email = '${email}'`)();
 };

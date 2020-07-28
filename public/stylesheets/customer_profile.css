@@ -60,8 +60,8 @@
 }
 
 .img {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -72,6 +72,7 @@
   display: flex;
   width: 100%;
   border-bottom: 1px solid #9593a3;
+  margin: 15px 0;
 }
 
 .inputs img {
@@ -86,16 +87,35 @@
   outline: none;
   text-align: end;
   color: white;
+  font-size: 18px;
+  padding-right: 10px;
 }
+
 .inputs input:focus {
   outline: none;
 }
+
 .inputs {
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
 }
+
 .inputs .description {
   display: flex;
   color: #9593a3;
+  align-items: center;
+}
+
+.h1 {
+  color: white;
+  font-size: 20px;
+}
+
+.border_null {
+  border: 0 !important;
+}
+.margin {
+  margin: 15px 0;
+  padding-bottom: 5px;
 }
