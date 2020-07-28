@@ -161,6 +161,8 @@ router.get("/verify_pass", async function (req, res) {
         }
     } else { //Request is from unknown source
         console.log('Request is from unknown source');
+        console.log("https://" + host);
+        console.log(req.protocol + "://" + req.get("host"));
     }
     res.redirect("/");
 });
