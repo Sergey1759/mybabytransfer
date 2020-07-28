@@ -136,9 +136,9 @@ router.post("/login", async function (req, res, next) {
 
     console.log(users);
 });
-
+//req.protocol + "://" + req.get("host") == "https://" + host
 router.get("/verify", async function (req, res) {
-    if (req.protocol + "://" + req.get("host") == "https://" + host) {
+    if (req.get("host") == host) {
         if (random[req.query.id]) { //email is verified
             delete random[req.query.id];
             await api.query.update_activated(1, req.query.user_mail);
@@ -151,7 +151,7 @@ router.get("/verify", async function (req, res) {
     res.redirect("/");
 });
 router.get("/verify_pass", async function (req, res) {
-    if (req.protocol + "://" + req.get("host") == "https://" + host) {
+    if (req.get("host") == host) {
         if (user_pass[req.query.id]) { //email is verified
             console.log(user_pass);
             await api.query.update_password_by_email(user_pass[req.query.id], req.query.user_mail);
