@@ -22,10 +22,10 @@
     <div class="profile">
         <img src="../../images/notification.svg" alt="">
         <div class="profile_name">
-            Екатерина
+            {{user_l.name}}
         </div>
         <div class="profile_lastname">
-            Марченко
+            {{user_l.lastname}}
         </div>
         <div class="profile_photo" style="background-image: url('{{user_l.avatar_url}}');">
         </div>
@@ -45,42 +45,41 @@
                 <div class="left">
                     <div class="img" style="background-image: url('{{user_l.avatar_url}}'">
                     </div>
+                    <label for="btn_add_img">
+                        <div id="btn__img">
+                            Загрузить фото
+                        </div>
+                    </label>
                     <input type="file" id="btn_add_img">
-
-
                 </div>
                 <div class="right">
                     <div class="inputs h1 border_null">
                         Ваши данные
                     </div>
                     <div class="inputs">
-                        <div class="description"><img src="../../images/man-user.svg" alt="man-user">
-                            <div class="inputs__left">
-                                Имя
+                        <label for="name">
+                            <div class="description"><img src="../../images/man-user.svg" alt="man-user">
+                                <div class="inputs__left">
+                                    Имя
+                                </div>
                             </div>
-                        </div>
-                        <input type="text">
+                        </label>
+                        <input type="text" id="name" placeholder="Введите имя...">
                     </div>
                     <div class="inputs border_null">
-                        <div class="description"><img src="../../images/man-user.svg" alt="man-user">
-                            <div class="inputs__left">
-                                Фамилия
+                        <label for="last_name">
+                            <div class="description"><img src="../../images/man-user.svg" alt="man-user">
+                                <div class="inputs__left">
+                                    Фамилия
+                                </div>
                             </div>
-                        </div>
-                        <input type="text">
+                        </label>
+                        <input type="text" id="last_name" placeholder="Введите фамилию...">
                     </div>
                 </div>
             </div>
             <div class="inputs margin">
-                <div class="description"><img src="../../images/man-user.svg" alt="man-user">
-                    <div class="inputs__left">
-                        Город по-умолчанию
-                    </div>
-                </div>
-                <input type="text">
-            </div>
-            <div class="inputs margin">
-                <div class="description"><img src="../../images/man-user.svg" alt="man-user">
+                <div class="description"><img src="../../images/gps_marker.svg" alt="man-user">
                     <div class="inputs__left">
                         Домашний адрес
                     </div>
