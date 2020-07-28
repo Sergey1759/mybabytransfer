@@ -20,7 +20,7 @@
   padding: 20px;
 }
 
-.container > div {
+.container>div {
   width: 50%;
   box-sizing: border-box;
 }
@@ -29,6 +29,10 @@
   display: flex;
   border-bottom: 1px solid #9593a3;
   padding-bottom: 10px;
+}
+
+.customer label {
+  cursor: pointer;
 }
 
 .customer .left {
@@ -51,13 +55,27 @@
 }
 
 #btn_add_img {
+  opacity: 0;
+  position: absolute;
+  display: none;
+}
+
+#btn__img {
   margin-top: 10px;
   background-color: #403e63;
   padding: 5px 10px;
   color: white;
   box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.54);
   border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
 }
+
+#btn__img:hover {
+  background-color: #E37429;
+  transition: 0.5s ease-in-out;
+}
+
 
 .img {
   width: 100px;
@@ -87,12 +105,16 @@
   outline: none;
   text-align: end;
   color: white;
-  font-size: 18px;
+  font-size: 17px;
   padding-right: 10px;
 }
 
 .inputs input:focus {
   outline: none;
+}
+
+.inputs input::placeholder {
+  color: #9593a3;
 }
 
 .inputs {
@@ -115,7 +137,40 @@
 .border_null {
   border: 0 !important;
 }
+
 .margin {
-  margin: 15px 0;
-  padding-bottom: 5px;
+  margin: 10px 0;
+  padding-bottom: 10px;
+}
+
+.buttons {
+  width: 40%;
+  margin: auto;
+  display: flex;
+  border-radius: 5px;
+  padding-bottom: 30px;
+  background-color: #2f2c4c;
+}
+
+.buttons div {
+  width: 50%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  background-color: #403E63;
+  font-weight: bold;
+  margin: 0 3px;
+}
+
+#send {
+  background-color: #E37429;
+  cursor: pointer;
+}
+
+.text {
+  margin-right: 20px;
 }

@@ -62,8 +62,14 @@ router.post("/profile/", middleware, async function (req, res, next) {
     let user_auto = await driver.query.getById(req.user.userId);
     let auto = req.body.auto;
     console.log(auto);
+    let type_autos = {
+        'standard': 1,
+        'comfort': 2,
+        'business': 3,
+    }
+    let g_type_auto = type_autos[req.body.auto];
     if (user_auto[0].vehicletypes_id == 0) {
-        let driver_car = await car.query.insert(auto.type_auto, auto.number_auto, auto.description_auto, 4, 250, 6, 17);
+        let driver_car = await car.query.insert(g_type_auto, auto.number_auto, auto.description_auto, 4, 250, 6, 17);
         console.log(driver_car[0]);
         await driver.query.insert_vehicletypes_id(driver_car.insertId, req.user.userId);
     } else {
