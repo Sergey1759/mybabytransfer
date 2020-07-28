@@ -23,6 +23,7 @@ let btn_click_sign = 0;
 
 let audio = new Audio('../sound/hollow.mp3');
 
+let now = 'login';
 
 message_btn.addEventListener('click', () => {
     message.classList.add('message_out');
@@ -34,7 +35,7 @@ message_btn.addEventListener('click', () => {
 btn_login.addEventListener('click', () => {
     btn_click_login++;
     btn_click_sign = 0;
-
+    now = 'login';
     clear_placeholder_sign();
 
     if (btn_click_login >= 2) {
@@ -56,7 +57,7 @@ btn_login.addEventListener('click', () => {
 btn_sign.addEventListener('click', () => {
     btn_click_login = 0;
     btn_click_sign++;
-
+    now = 'sign';
     clear_placeholder_login();
 
     if (btn_click_sign >= 2) {
@@ -174,6 +175,17 @@ async function check_sign() {
         }
     }
 }
+
+document.addEventListener('keypress', (event) => {
+    const keyName = event.key;
+    let obj = {
+        'sign': check_sign,
+        'login': check_login,
+    }
+    if (keyName == 'Enter') {
+        obj[now]();
+    }
+});
 
 function validator_phone(str) {
     let re = '^380[0-9]{9}';

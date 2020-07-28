@@ -27,8 +27,7 @@
         <div class="profile_lastname">
             Марченко
         </div>
-        <div class="profile_photo"
-            style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/94/Rubens-Lady.of.the.Chamber.to.Infanta.Isabella.jpg');">
+        <div class="profile_photo" style="background-image: url('{{user_l.avatar_url}}');">
         </div>
         <img src="../../images/door.svg" alt="exit" id="exit">
     </div>
@@ -44,14 +43,16 @@
         <div class="text">
             <div class="customer">
                 <div class="left">
-                    <div class="img"
-                        style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/94/Rubens-Lady.of.the.Chamber.to.Infanta.Isabella.jpg');">
+                    <div class="img" style="background-image: url('{{user_l.avatar_url}}'">
                     </div>
-                    <div id="btn_add_img">
-                        Загрузить фото
-                    </div>
+                    <input type="file" id="btn_add_img">
+
+
                 </div>
                 <div class="right">
+                    <div class="inputs h1 border_null">
+                        Ваши данные
+                    </div>
                     <div class="inputs">
                         <div class="description"><img src="../../images/man-user.svg" alt="man-user">
                             <div class="inputs__left">
@@ -60,7 +61,7 @@
                         </div>
                         <input type="text">
                     </div>
-                    <div class="inputs">
+                    <div class="inputs border_null">
                         <div class="description"><img src="../../images/man-user.svg" alt="man-user">
                             <div class="inputs__left">
                                 Фамилия
@@ -70,15 +71,53 @@
                     </div>
                 </div>
             </div>
+            <div class="inputs margin">
+                <div class="description"><img src="../../images/man-user.svg" alt="man-user">
+                    <div class="inputs__left">
+                        Город по-умолчанию
+                    </div>
+                </div>
+                <input type="text">
+            </div>
+            <div class="inputs margin">
+                <div class="description"><img src="../../images/man-user.svg" alt="man-user">
+                    <div class="inputs__left">
+                        Домашний адрес
+                    </div>
+                </div>
+                <input type="text">
+            </div>
+            <div class="inputs margin">
+                <div class="description"><img src="../../images/man-user.svg" alt="man-user">
+                    <div class="inputs__left">
+                        Предпочитаемый тип автомобиля
+                    </div>
+                </div>
+                <input type="text">
+            </div>
+            <div class="inputs margin">
+                <div class="description"><img src="../../images/man-user.svg" alt="man-user">
+                    <div class="inputs__left">
+                        Возраст ребенка по-умолчанию
+                    </div>
+                </div>
+                <input type="text">
+            </div>
+
         </div>
         <div class="map" id="map">
 
         </div>
     </div>
+    <div class="buttons">
+        <div class="btn">Отменить изменения</div>
+        <div class="btn" id="send">Сохранить данные</div>
+    </div>
 </div>
 
 {{>footer}}
 <script src="../../javascripts/post.js"></script>
+<script src="../../javascripts/customer_profile.js"></script>
 <script src="../../javascripts/map.js"></script>
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>

@@ -1,6 +1,7 @@
 let express = require("express");
 let router = express.Router();
 
+let middleware = require("../api/auth/middleware");
 let api = require("../api/users");
 let customer = require("../api/customer");
 let driver = require("../api/driver");
@@ -14,6 +15,8 @@ const users = require("../api/users");
 let random = {};
 let user_pass = {};
 let host;
+let multer = require('../service/multer');
+
 
 router.get("/reset_password", function (req, res, next) {
     res.render("reset_password", {
@@ -140,10 +143,10 @@ router.get("/verify", async function (req, res) {
             delete random[req.query.id];
             await api.query.update_activated(1, req.query.user_mail);
         } else { //email is not verified
-
+            console.log('Request is from unknown source');
         }
     } else { //Request is from unknown source
-
+        console.log('Request is from unknown source');
     }
     res.redirect("/");
 });
@@ -154,10 +157,10 @@ router.get("/verify_pass", async function (req, res) {
             await api.query.update_password_by_email(user_pass[req.query.id], req.query.user_mail);
             delete user_pass[req.query.id];
         } else { //email is not verified
-
+            console.log('email is not verified');
         }
     } else { //Request is from unknown source
-
+        console.log('Request is from unknown source');
     }
     res.redirect("/");
 });
@@ -165,6 +168,11 @@ router.get("/verify_pass", async function (req, res) {
 router.post("/logout", async function (req, res, next) {
     res.cookie('token', '');
     res.redirect('/orders/confirm_order/30')
+});
+
+router.post("/add_photo", multer, middleware, async function (req, res, next) {
+    let avatar_url = `../../user_img/${req.file.filename}`;
+    await api.query.update_avatar_url(avatar_url, req.user.userId)
 });
 
 function hashed_password(req) {
